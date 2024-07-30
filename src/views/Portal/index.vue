@@ -1,5 +1,6 @@
 <script setup>
 import portalTabs from '@/components/Portal/tabs.vue'
+import { showMessage } from '@/utils/Elements'
 import { useRouter } from 'vue-router'
 const tabsItem = [
   {
@@ -18,13 +19,13 @@ function handleClick(obj) {
       router.push('/emergency')
       break
     case '烟火告警':
-      console.log(2)
+      showMessage('暂未开发', 'warning')
       break
     case '渔船进出港统计':
-      console.log(2)
+      showMessage('暂未开发', 'warning')
       break
     case '告警分析':
-      console.log(22222)
+      showMessage('暂未开发', 'warning')
       break
 
     default:
@@ -47,6 +48,9 @@ function handleClick(obj) {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-image: url('@/assets/img/common/icon-login-bg.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 .tabs-wrapper {
   width: 500px;

@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* overflow: hidden; */
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#app {
+    color: #2c3e50;
+    font-family: 'SHSCNR', Avenir, Helvetica, Arial, sans-serif;
+    /* height: 100%; */
+    text-align: center;
+    width: 100%;
+    /* overflow: hidden; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 默认系统字体 */
+.el-dialog,
+.el-drawer,
+form,
+table,
+input,
+textarea {
+    font-family: 'SHSCNR', Avenir, Helvetica, Arial, sans-serif;
+}

@@ -1,9 +1,9 @@
 <script setup>
-import code1 from '@/assets/Login/code1.jpg'
-import code2 from '@/assets/Login/code2.jpg'
-import code3 from '@/assets/Login/code3.jpg'
-import code4 from '@/assets/Login/code4.jpg'
-import code5 from '@/assets/Login/code5.jpg'
+import code1 from '@/assets/img/Login/code1.jpg'
+import code2 from '@/assets/img/Login/code2.jpg'
+import code3 from '@/assets/img/Login/code3.jpg'
+import code4 from '@/assets/img/Login/code4.jpg'
+import code5 from '@/assets/img/Login/code5.jpg'
 import Vcode from 'vue3-puzzle-vcode'
 defineProps({
   isShow: {

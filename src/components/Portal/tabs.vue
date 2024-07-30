@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-const activeName = 'emergencyRescue'
+const activeName = ref('emergencyRescue')
 
 defineProps({
   tabsItem: {
@@ -40,7 +40,9 @@ function handleClick(obj) {
     <div class="tabs-bottom-content" v-if="!isTotalUse">
       <template v-for="item in tabsItem" :key="item.name">
         <div class="tab-item-title">{{ item.label }}</div>
-        <div v-for="(obj, index) in items[item.name]" class="tab-item">{{ obj }}</div>
+        <div v-for="(obj, index) in items[item.name]" class="tab-item" @click="handleClick(obj)">
+          {{ obj }}
+        </div>
       </template>
     </div>
   </div>
@@ -59,6 +61,7 @@ function handleClick(obj) {
   width: 120px;
   height: 120px;
   color: #fff;
+  cursor: pointer;
   text-align: center;
   line-height: 120px;
   border-radius: 50%;
@@ -84,5 +87,22 @@ function handleClick(obj) {
   width: 100px;
   margin: auto;
   border-bottom: 5px solid rgb(6, 165, 239);
+}
+:deep(.el-tabs__item) {
+  min-width: 96px;
+  min-height: 30px;
+  background-image: url('@/assets/img/common/accident/icon-over-title.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  &.is-active {
+    border: none;
+  }
+}
+:deep(.el-tabs--card .el-tabs__header .el-tabs__nav) {
+  border: none;
+}
+:deep(.el-tabs--card > .el-tabs__header) {
+  border: none;
 }
 </style>
