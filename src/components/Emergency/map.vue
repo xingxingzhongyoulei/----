@@ -78,19 +78,21 @@ async function initMarker(map) {
       markerOpacity: 1
     }
   })
-
   new maptalks.VectorLayer('vector', multipoint).addTo(map)
-  multipoint.on('click', (e) => {
+  multipoint.on('click', async (e) => {
+    // 请求假数据
+    const res = await request.get('/Mapdata')
+
     multipoint.setInfoWindow({
       content: `
       <div class="content">
         <div class="content-item">
           <span>船主：</span>
-          <span>呼呼呼</span>
+          <span>${res.data.name}</span>
         </div>
         <div class="content-item">
           <span>手机号码：</span>
-          <span>13271179551</span>
+          <span>${res.data.phone}</span>
         </div>
         <div class="content-item">
           <span>坐标：</span>
@@ -99,15 +101,15 @@ async function initMarker(map) {
         </div>
         <div class="content-item">
           <span>航向：</span>
-          <span>360。c</span>
+          <span>${res.data.degree}°C</span>
         </div>
         <div class="content-item">
           <span>船牌号：</span>
-          <span>船A16080</span>
+          <span>${res.data.shipNumber}</span>
         </div>
         <div class="content-item">
           <span>终端类型：</span>
-          <span>AIS</span>
+          <span>${res.data.cmd}</span>
         </div>
       </div>      
       `,
@@ -118,15 +120,11 @@ async function initMarker(map) {
     multipoint.openInfoWindow(e.coordinate)
   })
 }
-async function req() {
-  const res = await request.get('/Mapdata')
-  console.log(res)
-}
+
 onMounted(() => {
   initMap()
   // onMouseMove()
   initMarker(map.value)
-  req()
 })
 </script>
 
