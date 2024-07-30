@@ -6,6 +6,8 @@ import '@/assets/css/main.css'
 // 导入element-plus的css样式
 import 'element-plus/dist/index.css'
 import ElementPlus from 'element-plus'
+// 引入mock
+import '@/utils/mock/index'
 
 const app = createApp(App)
 app.use(ElementPlus)

@@ -118,11 +118,15 @@ async function initMarker(map) {
     multipoint.openInfoWindow(e.coordinate)
   })
 }
-
+async function req() {
+  const res = await request.get('/Mapdata')
+  console.log(res)
+}
 onMounted(() => {
   initMap()
   // onMouseMove()
   initMarker(map.value)
+  req()
 })
 </script>
 

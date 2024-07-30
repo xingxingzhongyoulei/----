@@ -1,15 +1,19 @@
 import { mock } from 'mockjs'
-mock(/.*\/user/, 'get', {
+
+mock(/Mapdata/, 'get', {
   code: 0,
-  'data|3': [
-    {
-      id: '@id',
-      name: '@cname',
-      age: '@integer(18, 60)',
-      address: '@city(true)',
-      email: '@email',
-      phone: '@phone'
-    }
-  ],
+  data: {
+    name: '@cname',
+    phone: /^(136|159|188|153|177)\d{8}$/,
+    cmd: function () {
+      const arr = ['AIS', '北斗']
+      return arr[Math.floor(Math.random() * arr.length)]
+    },
+    degree: '@integer(0, 360)',
+    'shipNumber|1': [
+      '@string("upper", 2)@integer(1000, 9999)',
+      '@string("upper", 1)@integer(10000, 99999)'
+    ]
+  },
   msg: 'success'
 })
