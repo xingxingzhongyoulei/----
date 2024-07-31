@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import 'maptalks/dist/maptalks.css'
 import * as maptalks from 'maptalks'
 import mapTool from '../common/map-tool.vue'
@@ -7,6 +7,8 @@ import { request } from '@/utils/axios'
 import alarmImg from '@/assets/img/common/icon-accident-point.png'
 import alarmTitle from '@/assets/img/common/icon-address.png'
 import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
+const route = useRoute()
 const map = ref('')
 // 测距工具
 const mapToolRef = ref(null)
@@ -20,7 +22,7 @@ function initMap() {
     maxZoom: 18,
     minZoom: 5,
     zoom: 10,
-    pitch: 30,
+    pitch: 0,
     centerCross: true,
     doubleClickZoom: false,
     spatialReference: {
@@ -148,7 +150,8 @@ async function initAlarmMarker(map) {
   new maptalks.VectorLayer('vectorAlarm', multipointAlarm.value).addTo(map)
   // 信息框弹出
   multipointAlarm.value.on('click', async (e) => {
-    map.setCenter(e.coordinate)
+    console.log(e.coordinate)
+    // map.setCenter(e.coordinate)
     // 请求假数据
     const res = await request.get('/MapAlarmdata')
 
@@ -195,7 +198,7 @@ async function initAlarmMarker(map) {
         <div class="content-item close" onclick="handleClose()">
         关闭
         </div>
-        <div class="content-item close" onclick="handleClose('/accident-information','${res.data.shipNumber}',${e.coordinate.x.toFixed(5)},${e.coordinate.y.toFixed(5)})">
+        <div class="content-item close" onclick="handleClose('/accident-information','${res.data.shipNumber}',${e.coordinate.x.toFixed(4)},${e.coordinate.y.toFixed(4)})">
         立即调度处置
         </div>
         <div class="content-item close" onclick="handleClose()">
@@ -218,10 +221,10 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
   multipoint.value.closeInfoWindow()
   switch (e) {
     case '/accident-information':
-      dispatchCircular([coordinateX, coordinateY])
+      let roundNum = dispatchCircular([coordinateX, coordinateY])
       router.push({
         path: '/accident-information',
-        query: { id: params, coordinateX, coordinateY }
+        query: { id: params, coordinateX, coordinateY, roundNum }
       })
       break
 
@@ -241,6 +244,9 @@ function dispatchCircular(coordinate) {
       polygonOpacity: 0.2
     }
   })
+  if (map.value.getLayer('vectorcircle')) {
+    map.value.removeLayer('vectorcircle')
+  }
   new maptalks.VectorLayer('vectorcircle', circle).addTo(map.value)
   for (let i = 0; i < markerCoordinate.value.length; i++) {
     if (circle.containsPoint(new maptalks.Coordinate(markerCoordinate.value[i]))) {
