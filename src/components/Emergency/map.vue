@@ -5,6 +5,7 @@ import * as maptalks from 'maptalks'
 import mapTool from '../common/map-tool.vue'
 import { request } from '@/utils/axios'
 import alarmImg from '@/assets/img/common/icon-accident-point.png'
+import alarmTitle from '@/assets/img/common/icon-address.png'
 const map = ref('')
 // 测距工具
 const mapToolRef = ref(null)
@@ -49,10 +50,11 @@ function handleClickUse(e) {
 }
 
 // marker的标记
+const multipoint = ref(null)
 async function initMarker(map) {
   const data = await request.get('/public/jsonData/makerCoordinate.json')
   // 创建标记
-  const multipoint = new maptalks.MultiPoint(data, {
+  multipoint.value = new maptalks.MultiPoint(data, {
     visible: true,
     editable: true,
     cursor: 'pointer',
@@ -80,13 +82,12 @@ async function initMarker(map) {
       markerOpacity: 1
     }
   })
-  new maptalks.VectorLayer('vectorMarker', multipoint).addTo(map)
-  multipoint.on('click', async (e) => {
-    console.log(e)
+  new maptalks.VectorLayer('vectorMarker', multipoint.value).addTo(map)
+  multipoint.value.on('click', async (e) => {
     // 请求假数据
     const res = await request.get('/Mapdata')
 
-    multipoint.setInfoWindow({
+    multipoint.value.setInfoWindow({
       content: `
       <div class="content">
         <div class="content-item">
@@ -114,26 +115,23 @@ async function initMarker(map) {
           <span>终端类型：</span>
           <span>${res.data.cmd}</span>
         </div>
-        <div class="content-item close" onclick="handleClose">
+        <div class="content-item close" onclick="handleClose()">
         关闭
         </div>
-      </div>      
+      </div>
       `,
       title: '坐标',
       autoOpenOn: true,
       custom: true
     })
-    multipoint.openInfoWindow(e.coordinate)
+    multipoint.value.openInfoWindow(e.coordinate)
   })
 }
-// 关闭信息框
-function handleClose() {
-  console.log('1111')
-}
 // 警告marker标记器
+const multipointAlarm = ref(null)
 async function initAlarmMarker(map) {
   const data = await request.get('/public/jsonData/mapAlarmCoordinate.json')
-  const multipoint = new maptalks.MultiPoint(data, {
+  multipointAlarm.value = new maptalks.MultiPoint(data, {
     symbol: {
       markerFile: alarmImg,
       markerWidth: 28,
@@ -143,11 +141,76 @@ async function initAlarmMarker(map) {
       markerOpacity: 1
     }
   })
-  new maptalks.VectorLayer('vectorAlarm', multipoint).addTo(map)
+  new maptalks.VectorLayer('vectorAlarm', multipointAlarm.value).addTo(map)
+  // 信息框弹出
+  multipointAlarm.value.on('click', async (e) => {
+    map.setCenter(e.coordinate)
+    // 请求假数据
+    const res = await request.get('/MapAlarmdata')
+
+    multipointAlarm.value.setInfoWindow({
+      content: `
+      <div class="content">
+        <div class="content-title">
+          <img src="${alarmTitle}" />
+          <span>事故报警</span>
+        </div>
+        <div class="content-item">
+          <span>事故类型：</span>
+          <span>${res.data.alarmMsg}</span>
+        </div>
+        <div class="content-item">
+          <span>船主：</span>
+          <span>${res.data.name}</span>
+        </div>
+        <div class="content-item">
+          <span>手机号码：</span>
+          <span>${res.data.phone}</span>
+        </div>
+        <div class="content-item">
+          <span>坐标：</span>
+          <span>经度：${e.coordinate.x.toFixed(5)}</span>
+          <span>纬度：${e.coordinate.y.toFixed(5)}</span>
+        </div>
+        <div class="content-item">
+          <span>航向：</span>
+          <span>${res.data.degree}°C</span>
+        </div>
+        <div class="content-item">
+          <span>船牌号：</span>
+          <span>${res.data.shipNumber}</span>
+        </div>
+        <div class="content-item">
+          <span>终端类型：</span>
+          <span>${res.data.cmd}</span>
+        </div>
+        <div class="content-item close" onclick="handleClose()">
+        关闭
+        </div>
+        <div class="content-item close" onclick="handleClose()">
+        立即调度处置
+        </div>
+        <div class="content-item close" onclick="handleClose()">
+        预警通知
+        </div>
+      </div>
+      `,
+      title: '坐标',
+      autoOpenOn: true,
+      custom: true
+    })
+    multipointAlarm.value.openInfoWindow(e.coordinate)
+  })
+}
+
+// 需要挂载全局  局部不生效 关闭信息框
+window.handleClose = (e) => {
+  // 关闭信息框
+  multipointAlarm.value.closeInfoWindow()
+  multipoint.value.closeInfoWindow()
 }
 onMounted(() => {
   initMap()
-  // onMouseMove()
   initMarker(map.value)
   initAlarmMarker(map.value)
 })
@@ -173,6 +236,13 @@ onMounted(() => {
   height: auto;
   background-color: rgba($color: #3b70c0, $alpha: 0.75);
   color: white;
+  .content-title {
+    text-align: center;
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
   .content-item {
     padding: 5px 0;
     padding-left: 10px;
@@ -187,6 +257,7 @@ onMounted(() => {
       background-color: transparent;
       text-align: center;
       border: 1px solid rgba($color: #fff, $alpha: 0.8);
+      margin-top: 10px;
     }
   }
 }

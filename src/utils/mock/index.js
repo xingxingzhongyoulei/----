@@ -23,7 +23,7 @@ mock(/MapAlarmdata/, 'get', {
   data: {
     name: '@cname',
     phone: /^(136|159|188|153|177)\d{8}$/,
-    alarmMsg: /^('人员落水'|'超速'|'超载'|'超重'|'船只故障'|'船只事故')$/,
+    alarmMsg: /^(碰撞、触碰或浪损|触礁|搁浅|沉没|机件或重要工具的损坏或灭失|人员落水)$/,
     cmd: function () {
       const arr = ['AIS', '北斗']
       return arr[Math.floor(Math.random() * arr.length)]
