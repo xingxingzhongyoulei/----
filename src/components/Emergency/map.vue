@@ -6,11 +6,12 @@ import mapTool from '../common/map-tool.vue'
 import { request } from '@/utils/axios'
 import alarmImg from '@/assets/img/common/icon-accident-point.png'
 import alarmTitle from '@/assets/img/common/icon-address.png'
-import { dayjs } from 'element-plus'
 import { useRouter } from 'vue-router'
 const map = ref('')
 // 测距工具
 const mapToolRef = ref(null)
+// marker的坐标
+const markerCoordinate = ref(null)
 // marker 点击弹窗
 const infoWindow = ref(null)
 function initMap() {
@@ -55,9 +56,8 @@ function handleClickUse(e) {
 const multipoint = ref(null)
 const router = useRouter()
 async function initMarker(map) {
-  const data = await request.get('/public/jsonData/makerCoordinate.json')
-  // 创建标记
-  multipoint.value = new maptalks.MultiPoint(data, {
+  console.log(markerCoordinate.value)
+  multipoint.value = new maptalks.MultiPoint(markerCoordinate.value, {
     visible: true,
     editable: true,
     cursor: 'pointer',
@@ -86,6 +86,7 @@ async function initMarker(map) {
     }
   })
   new maptalks.VectorLayer('vectorMarker', multipoint.value).addTo(map)
+
   multipoint.value.on('click', async (e) => {
     // 请求假数据
     const res = await request.get('/Mapdata')
@@ -133,7 +134,7 @@ async function initMarker(map) {
 // 警告marker标记器
 const multipointAlarm = ref(null)
 async function initAlarmMarker(map) {
-  const data = await request.get('/public/jsonData/mapAlarmCoordinate.json')
+  const data = await request.get('/jsonData/mapAlarmCoordinate.json')
   multipointAlarm.value = new maptalks.MultiPoint(data, {
     symbol: {
       markerFile: alarmImg,
@@ -217,6 +218,7 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
   multipoint.value.closeInfoWindow()
   switch (e) {
     case '/accident-information':
+      dispatchCircular([coordinateX, coordinateY])
       router.push({
         path: '/accident-information',
         query: { id: params, coordinateX, coordinateY }
@@ -227,10 +229,35 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
       break
   }
 }
-onMounted(() => {
+// 点击立即调度 产生一个圆形区域
+function dispatchCircular(coordinate) {
+  let roundNum = 0
+  const circle = new maptalks.Circle(coordinate, 25000, {
+    id: 'circle',
+    symbol: {
+      lineColor: '#00ffff',
+      lineWidth: 2,
+      polygonFill: '#00ffff',
+      polygonOpacity: 0.2
+    }
+  })
+  new maptalks.VectorLayer('vectorcircle', circle).addTo(map.value)
+  for (let i = 0; i < markerCoordinate.value.length; i++) {
+    if (circle.containsPoint(new maptalks.Coordinate(markerCoordinate.value[i]))) {
+      roundNum++
+    }
+  }
+  return roundNum
+}
+async function getMarkerCoordinate() {
+  const data = await request.get('/jsonData/makerCoordinate.json')
+  markerCoordinate.value = data
+}
+onMounted(async () => {
   initMap()
+  await getMarkerCoordinate()
   initMarker(map.value)
-  initAlarmMarker(map.value)
+  await initAlarmMarker(map.value)
 })
 </script>
 

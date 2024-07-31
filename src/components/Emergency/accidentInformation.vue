@@ -4,7 +4,6 @@ import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-console.log(route.query)
 const alarmMsg = ref({})
 async function initMsg() {
   const res = await request('/MapAlarmdata')
@@ -20,7 +19,7 @@ onMounted(() => {
     <div class="information-title">事故信息</div>
     <div class="information-info">
       <div class="information-info-item">船主:{{ alarmMsg.name }}</div>
-      <div class="information-info-item">事故类型：:{{ alarmMsg.alarmMsg }}</div>
+      <div class="information-info-item">事故类型：{{ alarmMsg.alarmMsg }}</div>
       <div class="information-info-item">
         坐标:{{ route.query.coordinateX }} &nbsp;&nbsp;{{ route.query.coordinateY }}
       </div>
@@ -51,6 +50,9 @@ onMounted(() => {
   background-size: 100% 100%;
 }
 .information-info {
+  padding-bottom: 30px;
+  background-color: rgba($color: #091937, $alpha: 0.2);
+
   .information-info-item {
     color: white;
     text-align: left;
@@ -59,7 +61,6 @@ onMounted(() => {
     height: 45px;
     line-height: 45px;
     font-size: 20px;
-    background-color: rgba($color: #091937, $alpha: 0.4);
   }
 }
 </style>
