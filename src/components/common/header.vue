@@ -11,7 +11,10 @@ import GoBack from './goBack.vue'
 
 <style lang="scss" scoped>
 .header {
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
 }
 .header-wrapper {
   width: 100%;

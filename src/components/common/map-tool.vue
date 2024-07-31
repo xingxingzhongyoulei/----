@@ -69,6 +69,7 @@ function disableMeasure() {
   // 禁用之后清除
   // mapTool.value.clear()
 }
+
 // 监听是否启用测距工具，触发emit事件
 watch(isUse, (newValue) => {
   emit('handleClickUse', newValue)

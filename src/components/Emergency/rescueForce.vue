@@ -1,4 +1,21 @@
-<script setup></script>
+<script setup>
+import { request } from '@/utils/axios'
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+const roundShip = ref([])
+async function getRoundShip() {
+  const num = route.query.roundNum
+  for (let i = 0; i < num; i++) {
+    const res = await request('/MapRounddata')
+    roundShip.value.push({ phone: res.data.phone, shipNumber: res.data.shipNumber })
+  }
+}
+onMounted(() => {
+  getRoundShip()
+})
+</script>
 
 <template>
   <div class="force-wrapper">
@@ -6,7 +23,7 @@
     <div class="force-content">
       <div class="force-item-title">
         <div class="force-title-item">
-          周边船只<span style="color: aqua">{{ 0 }}</span
+          周边船只<span style="color: aqua">{{ route.query.roundNum }}</span
           >条
         </div>
         <div class="force-title-item">
@@ -15,14 +32,19 @@
         </div>
       </div>
       <div class="forc-content-list-title">
-        <div class="index">序号</div>
+        <input type="checkbox" style="display: none" />
+        <div class="index" style="margin-left: 33px">序号</div>
         <div class="shipNumber">船牌号</div>
         <div>号码</div>
       </div>
-      <div class="force-content-list">
-        <div class="index">1</div>
-        <div class="shipNumber">A123456</div>
-        <div>132456789</div>
+      <div class="force-content-list" v-for="(item, index) in roundShip" :key="index">
+        <input type="checkbox" style="margin-left: 10px" />
+        <div class="index">{{ index + 1 }}</div>
+        <div class="shipNumber">{{ item.shipNumber }}</div>
+        <div>{{ item.phone }}</div>
+      </div>
+      <div class="force-content-message">
+        <el-button type="success">发送短信</el-button>
       </div>
     </div>
   </div>
@@ -50,6 +72,7 @@
 .force-content {
   min-height: 250px;
   color: white;
+  padding-bottom: 20px;
   .force-item-title {
     display: flex;
     justify-content: space-evenly;
@@ -63,7 +86,7 @@
   }
   .force-content-list {
     display: flex;
-    margin-top: 10px;
+    margin-top: 15px;
   }
   .index {
     width: 40px;
@@ -74,6 +97,9 @@
     text-align: center;
     margin-left: 10px;
     margin-right: 20px;
+  }
+  .force-content-message {
+    margin-top: 20px;
   }
 }
 </style>

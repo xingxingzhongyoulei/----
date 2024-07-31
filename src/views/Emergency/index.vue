@@ -1,11 +1,30 @@
 <script setup>
 import { RouterView } from 'vue-router'
+import Map from '@/components/Emergency/map.vue'
+import { useRoute } from 'vue-router'
+import { ref, watch } from 'vue'
+const route = useRoute()
+const mapRef = ref(null)
+watch(
+  route,
+  (newValue, oldValue) => {
+    if (newValue.path == '/emergency' && mapRef.value != null) {
+      mapRef.value.removeCircle()
+      mapRef.value.mapToolShowToggle(true)
+    } else if (newValue.path == '/accident-information' && mapRef.value != null) {
+      mapRef.value.mapToolShowToggle(false)
+    }
+  },
+  {
+    immediate: true
+  }
+)
 </script>
 
 <template>
   <div class="emergency-wrapper">
+    <Map ref="mapRef"></Map>
     <RouterView name="header"></RouterView>
-    <RouterView name="main"></RouterView>
     <RouterView name="leftTop"></RouterView>
     <RouterView name="leftBottom"></RouterView>
   </div>
@@ -13,8 +32,9 @@ import { RouterView } from 'vue-router'
 
 <style lang="scss" scoped>
 .emergency-wrapper {
+  position: relative;
   width: 100vw;
-  height: calc(100vh - 80px);
-  overflow: hidden;
+  height: 100vh;
+  // overflow: hidden;
 }
 </style>

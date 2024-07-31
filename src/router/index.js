@@ -26,7 +26,6 @@ const router = createRouter({
           name: 'emergency-center',
           components: {
             header: () => import('@/components/common/header.vue'),
-            main: () => import('@/components/Emergency/map.vue'),
             leftTop: () => import('@/views/Emergency/weatherSituation.vue'),
             leftBottom: () => import('@/views/Emergency/dynamics.vue')
           }
@@ -36,7 +35,6 @@ const router = createRouter({
           name: 'accident-information',
           components: {
             header: () => import('@/components/common/header.vue'),
-            main: () => import('@/components/Emergency/map.vue'),
             leftTop: () => import('@/components/Emergency/accidentInformation.vue'),
             leftBottom: () => import('@/components/Emergency/rescueForce.vue')
           }

@@ -37,3 +37,15 @@ mock(/MapAlarmdata/, 'get', {
   },
   msg: 'success'
 })
+
+mock(/MapRounddata/, 'get', {
+  code: 0,
+  data: {
+    phone: /^(136|159|188|153|177)\d{8}$/,
+    'shipNumber|1': [
+      '@string("upper", 2)@integer(1000, 9999)',
+      '@string("upper", 1)@integer(10000, 99999)'
+    ]
+  },
+  msg: 'success'
+})

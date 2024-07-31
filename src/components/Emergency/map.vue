@@ -14,8 +14,9 @@ const map = ref('')
 const mapToolRef = ref(null)
 // marker的坐标
 const markerCoordinate = ref(null)
+// 测距工具的显示隐藏
+const mapToolShow = ref(true)
 // marker 点击弹窗
-const infoWindow = ref(null)
 function initMap() {
   map.value = new maptalks.Map('map-container', {
     center: [120.13, 33.38],
@@ -58,7 +59,6 @@ function handleClickUse(e) {
 const multipoint = ref(null)
 const router = useRouter()
 async function initMarker(map) {
-  console.log(markerCoordinate.value)
   multipoint.value = new maptalks.MultiPoint(markerCoordinate.value, {
     visible: true,
     editable: true,
@@ -221,11 +221,8 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
   multipoint.value.closeInfoWindow()
   switch (e) {
     case '/accident-information':
-      let roundNum = dispatchCircular([coordinateX, coordinateY])
-      router.push({
-        path: '/accident-information',
-        query: { id: params, coordinateX, coordinateY, roundNum }
-      })
+      dispatchCircular([coordinateX, coordinateY], params, coordinateX, coordinateY)
+
       break
 
     default:
@@ -233,7 +230,7 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
   }
 }
 // 点击立即调度 产生一个圆形区域
-function dispatchCircular(coordinate) {
+function dispatchCircular(coordinate, params, coordinateX, coordinateY) {
   let roundNum = 0
   const circle = new maptalks.Circle(coordinate, 25000, {
     id: 'circle',
@@ -244,21 +241,33 @@ function dispatchCircular(coordinate) {
       polygonOpacity: 0.2
     }
   })
-  if (map.value.getLayer('vectorcircle')) {
-    map.value.removeLayer('vectorcircle')
-  }
+  removeCircle()
   new maptalks.VectorLayer('vectorcircle', circle).addTo(map.value)
   for (let i = 0; i < markerCoordinate.value.length; i++) {
     if (circle.containsPoint(new maptalks.Coordinate(markerCoordinate.value[i]))) {
       roundNum++
     }
   }
-  return roundNum
+  router.push({
+    path: '/accident-information',
+    query: { id: params, coordinateX, coordinateY, roundNum }
+  })
+  // return roundNum
 }
 async function getMarkerCoordinate() {
   const data = await request.get('/jsonData/makerCoordinate.json')
   markerCoordinate.value = data
 }
+// 移除圆形图层
+function removeCircle() {
+  if (map.value.getLayer('vectorcircle')) {
+    map.value.removeLayer('vectorcircle')
+  }
+}
+function mapToolShowToggle(bool) {
+  mapToolShow.value = bool
+}
+defineExpose({ removeCircle, mapToolShowToggle })
 onMounted(async () => {
   initMap()
   await getMarkerCoordinate()
@@ -269,7 +278,7 @@ onMounted(async () => {
 
 <template>
   <div id="map-container"></div>
-  <mapTool @handleClickUse="handleClickUse" ref="mapToolRef"></mapTool>
+  <mapTool @handleClickUse="handleClickUse" ref="mapToolRef" v-if="mapToolShow"></mapTool>
 </template>
 
 <style lang="scss" scoped>
