@@ -6,6 +6,8 @@ import mapTool from '../common/map-tool.vue'
 import { request } from '@/utils/axios'
 import alarmImg from '@/assets/img/common/icon-accident-point.png'
 import alarmTitle from '@/assets/img/common/icon-address.png'
+import { dayjs } from 'element-plus'
+import { useRouter } from 'vue-router'
 const map = ref('')
 // 测距工具
 const mapToolRef = ref(null)
@@ -51,6 +53,7 @@ function handleClickUse(e) {
 
 // marker的标记
 const multipoint = ref(null)
+const router = useRouter()
 async function initMarker(map) {
   const data = await request.get('/public/jsonData/makerCoordinate.json')
   // 创建标记
@@ -168,6 +171,10 @@ async function initAlarmMarker(map) {
           <span>${res.data.phone}</span>
         </div>
         <div class="content-item">
+          <span>时间：</span>
+          <span>2024-7-30 18:30:00</span>
+        </div>
+        <div class="content-item">
           <span>坐标：</span>
           <span>经度：${e.coordinate.x.toFixed(5)}</span>
           <span>纬度：${e.coordinate.y.toFixed(5)}</span>
@@ -187,7 +194,7 @@ async function initAlarmMarker(map) {
         <div class="content-item close" onclick="handleClose()">
         关闭
         </div>
-        <div class="content-item close" onclick="handleClose()">
+        <div class="content-item close" onclick="handleClose('/accident-information','${res.data.shipNumber}',${e.coordinate.x.toFixed(5)},${e.coordinate.y.toFixed(5)})">
         立即调度处置
         </div>
         <div class="content-item close" onclick="handleClose()">
@@ -204,10 +211,21 @@ async function initAlarmMarker(map) {
 }
 
 // 需要挂载全局  局部不生效 关闭信息框
-window.handleClose = (e) => {
+window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
   // 关闭信息框
   multipointAlarm.value.closeInfoWindow()
   multipoint.value.closeInfoWindow()
+  switch (e) {
+    case '/accident-information':
+      router.push({
+        path: '/accident-information',
+        query: { id: params, coordinateX, coordinateY }
+      })
+      break
+
+    default:
+      break
+  }
 }
 onMounted(() => {
   initMap()

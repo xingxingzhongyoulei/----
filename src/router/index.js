@@ -30,6 +30,16 @@ const router = createRouter({
             leftTop: () => import('@/views/Emergency/weatherSituation.vue'),
             leftBottom: () => import('@/views/Emergency/dynamics.vue')
           }
+        },
+        {
+          path: '/accident-information',
+          name: 'accident-information',
+          components: {
+            header: () => import('@/components/common/header.vue'),
+            main: () => import('@/components/Emergency/map.vue'),
+            leftTop: () => import('@/components/Emergency/accidentInformation.vue'),
+            leftBottom: () => import('@/components/Emergency/rescueForce.vue')
+          }
         }
       ]
     }

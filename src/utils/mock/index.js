@@ -18,6 +18,7 @@ mock(/Mapdata/, 'get', {
   msg: 'success'
 })
 
+// 报警坐标的相关信息
 mock(/MapAlarmdata/, 'get', {
   code: 0,
   data: {
