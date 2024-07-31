@@ -4,6 +4,7 @@ import 'maptalks/dist/maptalks.css'
 import * as maptalks from 'maptalks'
 import mapTool from '../common/map-tool.vue'
 import { request } from '@/utils/axios'
+import alarmImg from '@/assets/img/common/icon-accident-point.png'
 const map = ref('')
 // 测距工具
 const mapToolRef = ref(null)
@@ -46,11 +47,12 @@ function handleClickUse(e) {
       break
   }
 }
+
 // marker的标记
 async function initMarker(map) {
-  const res = await request.get('/public/jsonData/makerCoordinate.json')
+  const data = await request.get('/public/jsonData/makerCoordinate.json')
   // 创建标记
-  const multipoint = new maptalks.MultiPoint(res, {
+  const multipoint = new maptalks.MultiPoint(data, {
     visible: true,
     editable: true,
     cursor: 'pointer',
@@ -78,8 +80,9 @@ async function initMarker(map) {
       markerOpacity: 1
     }
   })
-  new maptalks.VectorLayer('vector', multipoint).addTo(map)
+  new maptalks.VectorLayer('vectorMarker', multipoint).addTo(map)
   multipoint.on('click', async (e) => {
+    console.log(e)
     // 请求假数据
     const res = await request.get('/Mapdata')
 
@@ -111,6 +114,9 @@ async function initMarker(map) {
           <span>终端类型：</span>
           <span>${res.data.cmd}</span>
         </div>
+        <div class="content-item close" onclick="handleClose">
+        关闭
+        </div>
       </div>      
       `,
       title: '坐标',
@@ -120,11 +126,30 @@ async function initMarker(map) {
     multipoint.openInfoWindow(e.coordinate)
   })
 }
-
+// 关闭信息框
+function handleClose() {
+  console.log('1111')
+}
+// 警告marker标记器
+async function initAlarmMarker(map) {
+  const data = await request.get('/public/jsonData/mapAlarmCoordinate.json')
+  const multipoint = new maptalks.MultiPoint(data, {
+    symbol: {
+      markerFile: alarmImg,
+      markerWidth: 28,
+      markerHeight: 40,
+      markerDx: 0,
+      markerDy: 0,
+      markerOpacity: 1
+    }
+  })
+  new maptalks.VectorLayer('vectorAlarm', multipoint).addTo(map)
+}
 onMounted(() => {
   initMap()
   // onMouseMove()
   initMarker(map.value)
+  initAlarmMarker(map.value)
 })
 </script>
 
@@ -140,9 +165,12 @@ onMounted(() => {
   overflow: hidden;
 }
 :deep(.content) {
+  box-sizing: border-box;
+  position: relative;
   text-align: left;
   padding: 20px 20px;
   min-width: 400px;
+  height: auto;
   background-color: rgba($color: #3b70c0, $alpha: 0.75);
   color: white;
   .content-item {
@@ -154,6 +182,11 @@ onMounted(() => {
     }
     &:nth-child(odd) {
       background-color: rgba($color: #4a8ff7, $alpha: 0.9);
+    }
+    &.close {
+      background-color: transparent;
+      text-align: center;
+      border: 1px solid rgba($color: #fff, $alpha: 0.8);
     }
   }
 }
