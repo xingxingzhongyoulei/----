@@ -8,6 +8,7 @@ import alarmImg from '@/assets/img/common/icon-accident-point.png'
 import alarmTitle from '@/assets/img/common/icon-address.png'
 import { useRouter } from 'vue-router'
 import { useRoute } from 'vue-router'
+import TreeTable from '../common/treeTable.vue'
 const route = useRoute()
 const map = ref('')
 // 测距工具
@@ -16,6 +17,8 @@ const mapToolRef = ref(null)
 const markerCoordinate = ref(null)
 // 测距工具的显示隐藏
 const mapToolShow = ref(true)
+// treeTable的显示隐藏
+const treeTableShow = ref(false)
 // marker 点击弹窗
 function initMap() {
   map.value = new maptalks.Map('map-container', {
@@ -198,10 +201,10 @@ async function initAlarmMarker(map) {
         <div class="content-item close" onclick="handleClose()">
         关闭
         </div>
-        <div class="content-item close" onclick="handleClose('/accident-information','${res.data.shipNumber}',${e.coordinate.x.toFixed(4)},${e.coordinate.y.toFixed(4)})">
+        <div class="content-item close" onclick="handleClose('accident-information','${res.data.shipNumber}',${e.coordinate.x.toFixed(4)},${e.coordinate.y.toFixed(4)})">
         立即调度处置
         </div>
-        <div class="content-item close" onclick="handleClose()">
+        <div class="content-item close" onclick="handleClose('alarmInform')">
         预警通知
         </div>
       </div>
@@ -220,9 +223,11 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
   multipointAlarm.value.closeInfoWindow()
   multipoint.value.closeInfoWindow()
   switch (e) {
-    case '/accident-information':
+    case 'accident-information':
       dispatchCircular([coordinateX, coordinateY], params, coordinateX, coordinateY)
-
+      break
+    case 'alarmInform':
+      treeInform()
       break
 
     default:
@@ -267,6 +272,10 @@ function removeCircle() {
 function mapToolShowToggle(bool) {
   mapToolShow.value = bool
 }
+// 树形图通知
+function treeInform() {
+  treeTableShow.value = true
+}
 defineExpose({ removeCircle, mapToolShowToggle })
 onMounted(async () => {
   initMap()
@@ -279,6 +288,7 @@ onMounted(async () => {
 <template>
   <div id="map-container"></div>
   <mapTool @handleClickUse="handleClickUse" ref="mapToolRef" v-if="mapToolShow"></mapTool>
+  <TreeTable v-if="treeTableShow"></TreeTable>
 </template>
 
 <style lang="scss" scoped>

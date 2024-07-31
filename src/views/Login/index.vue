@@ -13,7 +13,11 @@ const isShow = ref(false)
 const slideVerifyRef = ref(null)
 // 是否显示验证组件
 const isShowSlide = computed(() => {
-  return formLabelAlign.value.username != '' && formLabelAlign.value.password !== ''
+  if (formLabelAlign.value.username != 'admin' || formLabelAlign.value.password != '123456') {
+    return false
+  } else {
+    return true
+  }
 })
 
 //成功后，路由跳转
@@ -62,7 +66,9 @@ function successHandle() {
 <style lang="scss" scoped>
 .formContainer {
   display: flex;
+  width: 100vw;
   height: 100vh;
+  background-image: url('@/assets/img/common/icon-login-bg.png');
   justify-content: center;
   align-items: center;
   align-items: center;
