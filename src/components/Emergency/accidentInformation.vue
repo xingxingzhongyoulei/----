@@ -1,6 +1,6 @@
 <script setup>
 import { request } from '@/utils/axios'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -9,6 +9,15 @@ async function initMsg() {
   const res = await request('/MapAlarmdata')
   alarmMsg.value = res.data
 }
+watch(
+  route,
+  (newValue, oldValue) => {
+    console.log(newValue)
+  },
+  {
+    immediate: true
+  }
+)
 onMounted(() => {
   initMsg()
 })

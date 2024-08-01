@@ -15,6 +15,7 @@
     "dayjs": "^1.11.12",
     "element-plus": "^2.7.8",
     "maptalks": "1.0.0-rc.33",
+    "maptalks.routeplayer": "^1.0.0-rc.1",
     "mockjs": "^1.1.0",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",

@@ -1,0 +1,2222 @@
+[
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.18514167,
+
+    "latitude": 36.11841,
+
+    "sog": "4",
+
+    "cog": "254.4",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 17:29:55"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.17810667,
+
+    "latitude": 36.12037667,
+
+    "sog": "5",
+
+    "cog": "94.3",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 17:19:52"
+  },
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.185695,
+
+    "latitude": 36.121425,
+
+    "sog": "4.1",
+
+    "cog": "132.6",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 17:09:59"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.17777667,
+
+    "latitude": 36.11989333,
+
+    "sog": "4.9",
+
+    "cog": "236.5",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 16:59:45"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.19156833,
+
+    "latitude": 36.13452833,
+
+    "sog": "7.9",
+
+    "cog": "234.3",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 16:49:43"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.21485167,
+
+    "latitude": 36.14761,
+
+    "sog": "8",
+
+    "cog": "231.4",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 16:39:39"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.22909167,
+
+    "latitude": 36.16573833,
+
+    "sog": "7.8",
+
+    "cog": "212.6",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 16:29:36"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.24824333,
+
+    "latitude": 36.18287333,
+
+    "sog": "7.5",
+
+    "cog": "200.4",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 16:19:03"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.255405,
+
+    "latitude": 36.18713,
+
+    "sog": "0.2",
+
+    "cog": "294.3",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 16:09:31"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.255495,
+
+    "latitude": 36.18705333,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 15:59:32"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25550667,
+
+    "latitude": 36.18698333,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 15:49:28"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25546333,
+
+    "latitude": 36.18701833,
+
+    "sog": "0.1",
+
+    "cog": "119.4",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 15:39:28"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25547,
+
+    "latitude": 36.18692167,
+
+    "sog": "0.1",
+
+    "cog": "182.1",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 15:29:21"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25555,
+
+    "latitude": 36.186875,
+
+    "sog": "0",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 15:19:19"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25542667,
+
+    "latitude": 36.18697,
+
+    "sog": "0.1",
+
+    "cog": "10.9",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 15:09:15"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25549167,
+
+    "latitude": 36.18677833,
+
+    "sog": "0.1",
+
+    "cog": "329.3",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 14:59:12"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25554167,
+
+    "latitude": 36.18674167,
+
+    "sog": "0.1",
+
+    "cog": "191.6",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 14:49:10"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25551333,
+
+    "latitude": 36.18671,
+
+    "sog": "0.1",
+
+    "cog": "276.7",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 14:39:07"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.255475,
+
+    "latitude": 36.18680167,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 14:29:05"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25552167,
+
+    "latitude": 36.18678167,
+
+    "sog": "0",
+
+    "cog": "348.8",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 14:19:03"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25547167,
+
+    "latitude": 36.186845,
+
+    "sog": "0",
+
+    "cog": "74.4",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 14:09:00"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25554,
+
+    "latitude": 36.18710667,
+
+    "sog": "0.3",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 13:58:57"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25560333,
+
+    "latitude": 36.18719,
+
+    "sog": "0",
+
+    "cog": "194.9",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 13:48:55"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25562333,
+
+    "latitude": 36.18721,
+
+    "sog": "0.1",
+
+    "cog": "240.9",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 13:38:52"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.255585,
+
+    "latitude": 36.18727,
+
+    "sog": "0",
+
+    "cog": "276",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 13:28:50"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25543667,
+
+    "latitude": 36.18721167,
+
+    "sog": "0.3",
+
+    "cog": "0.7",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 13:18:48"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25539333,
+
+    "latitude": 36.18708,
+
+    "sog": "0",
+
+    "cog": "124.2",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 13:08:46"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25557,
+
+    "latitude": 36.187115,
+
+    "sog": "0",
+
+    "cog": "261.1",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 12:58:43"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25560667,
+
+    "latitude": 36.18707333,
+
+    "sog": "0.1",
+
+    "cog": "20.1",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 12:48:41"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25552667,
+
+    "latitude": 36.18707833,
+
+    "sog": "0.1",
+
+    "cog": "0.4",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 12:38:39"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25564833,
+
+    "latitude": 36.1872,
+
+    "sog": "0.2",
+
+    "cog": "260",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 12:28:36"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25537333,
+
+    "latitude": 36.18700667,
+
+    "sog": "0",
+
+    "cog": "355",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 12:18:38"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25557667,
+
+    "latitude": 36.18713167,
+
+    "sog": "0.1",
+
+    "cog": "180.8",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 12:08:32"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25566333,
+
+    "latitude": 36.18693333,
+
+    "sog": "2.4",
+
+    "cog": "121",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 11:58:11"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.255495,
+
+    "latitude": 36.186915,
+
+    "sog": "2.9",
+
+    "cog": "157.3",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 11:48:07"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25554333,
+
+    "latitude": 36.187015,
+
+    "sog": "0.2",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 11:38:05"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25551,
+
+    "latitude": 36.18701,
+
+    "sog": "0.1",
+
+    "cog": "329.3",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 11:28:00"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25549,
+
+    "latitude": 36.187045,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 11:17:58"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25551833,
+
+    "latitude": 36.187045,
+
+    "sog": "0",
+
+    "cog": "217.1",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 11:07:56"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25552833,
+
+    "latitude": 36.18700667,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 10:57:53"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25547,
+
+    "latitude": 36.18698667,
+
+    "sog": "0",
+
+    "cog": "356.5",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 10:47:51"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25551333,
+
+    "latitude": 36.18700333,
+
+    "sog": "0.1",
+
+    "cog": "349.8",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 10:37:50"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25555833,
+
+    "latitude": 36.187025,
+
+    "sog": "0",
+
+    "cog": "3.5",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 10:27:51"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25555167,
+
+    "latitude": 36.18701833,
+
+    "sog": "0.1",
+
+    "cog": "94",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 10:17:45"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25551167,
+
+    "latitude": 36.18696167,
+
+    "sog": "0.1",
+
+    "cog": "1",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 10:07:43"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.255435,
+
+    "latitude": 36.187055,
+
+    "sog": "0.1",
+
+    "cog": "1.3",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 09:57:41"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25548333,
+
+    "latitude": 36.18697167,
+
+    "sog": "0",
+
+    "cog": "263",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 09:47:39"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25552333,
+
+    "latitude": 36.18691333,
+
+    "sog": "0",
+
+    "cog": "1.5",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 09:37:37"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25543667,
+
+    "latitude": 36.187005,
+
+    "sog": "0",
+
+    "cog": "313.7",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 09:27:33"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25555167,
+
+    "latitude": 36.18701833,
+
+    "sog": "0",
+
+    "cog": "3.1",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 09:17:31"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25548667,
+
+    "latitude": 36.18701167,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 09:07:30"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25553,
+
+    "latitude": 36.18696167,
+
+    "sog": "0",
+
+    "cog": "271",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 08:57:27"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25640667,
+
+    "latitude": 36.18675667,
+
+    "sog": "0",
+
+    "cog": "195.5",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 08:47:25"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25649,
+
+    "latitude": 36.18684167,
+
+    "sog": "0.1",
+
+    "cog": "152.4",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 08:37:23"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25612833,
+
+    "latitude": 36.18685333,
+
+    "sog": "0.1",
+
+    "cog": "79.3",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 08:27:20"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25614167,
+
+    "latitude": 36.18687667,
+
+    "sog": "0",
+
+    "cog": "330.6",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 08:17:18"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25615,
+
+    "latitude": 36.18689333,
+
+    "sog": "0",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 08:07:16"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25588667,
+
+    "latitude": 36.187195,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 07:57:13"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25584,
+
+    "latitude": 36.18731833,
+
+    "sog": "0",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 07:47:10"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25586833,
+
+    "latitude": 36.187335,
+
+    "sog": "0.3",
+
+    "cog": "302.1",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 07:37:05"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25579333,
+
+    "latitude": 36.18723667,
+
+    "sog": "0",
+
+    "cog": "3.4",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 07:27:03"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25590667,
+
+    "latitude": 36.18735167,
+
+    "sog": "0",
+
+    "cog": "153",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 07:17:01"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25552167,
+
+    "latitude": 36.187245,
+
+    "sog": "0",
+
+    "cog": "166.7",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 07:07:02"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25554333,
+
+    "latitude": 36.18724667,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 06:56:55"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25592667,
+
+    "latitude": 36.18676833,
+
+    "sog": "0.1",
+
+    "cog": "103.6",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 06:46:53"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25553833,
+
+    "latitude": 36.18690167,
+
+    "sog": "0",
+
+    "cog": "98.3",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 06:36:51"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25569,
+
+    "latitude": 36.18711667,
+
+    "sog": "0.1",
+
+    "cog": "131.5",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 06:26:49"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25565,
+
+    "latitude": 36.18710167,
+
+    "sog": "0.1",
+
+    "cog": "3.4",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 06:16:46"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25568833,
+
+    "latitude": 36.18722167,
+
+    "sog": "0.1",
+
+    "cog": "341.3",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 06:06:44"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25558,
+
+    "latitude": 36.18721167,
+
+    "sog": "0",
+
+    "cog": "0.7",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 05:56:46"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25567833,
+
+    "latitude": 36.18708,
+
+    "sog": "0",
+
+    "cog": "0.2",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 05:46:40"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25578333,
+
+    "latitude": 36.18690167,
+
+    "sog": "0",
+
+    "cog": "3.5",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 05:36:37"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.255675,
+
+    "latitude": 36.18708,
+
+    "sog": "0",
+
+    "cog": "0.6",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 05:26:35"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25569167,
+
+    "latitude": 36.18707167,
+
+    "sog": "0.1",
+
+    "cog": "1.6",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 05:16:33"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25575,
+
+    "latitude": 36.18718833,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 05:06:32"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25573833,
+
+    "latitude": 36.18725667,
+
+    "sog": "0.2",
+
+    "cog": "85.8",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 04:56:30"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25566667,
+
+    "latitude": 36.187235,
+
+    "sog": "0",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 04:46:28"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25567333,
+
+    "latitude": 36.18725333,
+
+    "sog": "0",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 04:36:24"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25582,
+
+    "latitude": 36.18727833,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 04:26:22"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25571,
+
+    "latitude": 36.18718,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 04:16:19"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25566833,
+
+    "latitude": 36.187185,
+
+    "sog": "0.4",
+
+    "cog": "258",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 04:06:21"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25569167,
+
+    "latitude": 36.18713667,
+
+    "sog": "0.2",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 03:56:14"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25568167,
+
+    "latitude": 36.187065,
+
+    "sog": "0",
+
+    "cog": "71.9",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 03:46:11"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25567167,
+
+    "latitude": 36.18711667,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 03:35:51"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25546667,
+
+    "latitude": 36.18724667,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 03:26:09"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.255415,
+
+    "latitude": 36.18729167,
+
+    "sog": "0",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 03:16:07"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25541667,
+
+    "latitude": 36.187265,
+
+    "sog": "0",
+
+    "cog": "359",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 03:06:08"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25543833,
+
+    "latitude": 36.18726,
+
+    "sog": "0.1",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 02:56:02"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25541333,
+
+    "latitude": 36.18725667,
+
+    "sog": "0.1",
+
+    "cog": "204.2",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 02:46:00"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25539333,
+
+    "latitude": 36.187335,
+
+    "sog": "7.6",
+
+    "cog": "359.4",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 02:42:52"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.25545167,
+
+    "latitude": 36.18726333,
+
+    "sog": "0",
+
+    "cog": "158.6",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 02:35:58"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.255455,
+
+    "latitude": 36.18729833,
+
+    "sog": "0",
+
+    "cog": "0",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 02:25:55"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.255385,
+
+    "latitude": 36.18744333,
+
+    "sog": "0.4",
+
+    "cog": "185.1",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 02:15:52"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.24240667,
+
+    "latitude": 36.17546667,
+
+    "sog": "7.7",
+
+    "cog": "34.3",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 02:05:50"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.224205,
+
+    "latitude": 36.15941,
+
+    "sog": "7.9",
+
+    "cog": "36",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 01:55:51"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.20755167,
+
+    "latitude": 36.14535167,
+
+    "sog": "7.2",
+
+    "cog": "55.2",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 01:45:44"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.18806,
+
+    "latitude": 36.13379,
+
+    "sog": "7",
+
+    "cog": "45.2",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 01:35:42"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.17779333,
+
+    "latitude": 36.11850667,
+
+    "sog": "4.9",
+
+    "cog": "17.5",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 01:25:39"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.17940333,
+
+    "latitude": 36.10717,
+
+    "sog": "4.1",
+
+    "cog": "265.5",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 01:05:34"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.174625,
+
+    "latitude": 36.10552333,
+
+    "sog": "2.7",
+
+    "cog": "146.9",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 00:55:32"
+  },
+
+  {
+    "uuid": "412487757ft",
+
+    "deviceType": "AIS",
+
+    "terminalCode": "412487757",
+
+    "boatName": "412487757",
+
+    "longitude": 120.17866,
+
+    "latitude": 36.104415,
+
+    "sog": "7.2",
+
+    "cog": "278.2",
+
+    "heading": null,
+
+    "gpsTime": "2024-07-05 00:45:29"
+  }
+]

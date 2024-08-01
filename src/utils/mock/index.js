@@ -60,3 +60,33 @@ mock(/MapInformData/, 'get', {
   ],
   msg: 'success'
 })
+
+const Random = {
+  datetime: function (format, start, interval) {
+    const startTimestamp = new Date(start).getTime() // 将起点时间转换为时间戳
+    const randomOffset = Math.floor(Math.random() * (10 * 60 * 1000)) // 生成0到10分钟之间的随机时间偏移
+    const randomTimestamp = startTimestamp + randomOffset // 根据偏移计算随机时间戳
+    const randomDate = new Date(randomTimestamp) // 将随机时间戳转换为日期对象
+    const year = randomDate.getFullYear()
+    const month = String(randomDate.getMonth() + 1).padStart(2, '0')
+    const day = String(randomDate.getDate()).padStart(2, '0')
+    const hours = String(randomDate.getHours()).padStart(2, '0')
+    const minutes = String(randomDate.getMinutes()).padStart(2, '0')
+    const seconds = String(randomDate.getSeconds()).padStart(2, '0')
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+  }
+}
+mock(/MapRouterPlay/, 'get', {
+  code: 0,
+  'list|30': [
+    {
+      deviceType: 'AIS',
+      'longitude|120.3-120.99': 0,
+      'latitude|32.7-33.74': 0,
+      gpsTime: function () {
+        return Random.datetime('yyyy-MM-dd HH:mm:ss', '2024-07-05 04:06:21', '10m')
+      }
+    }
+  ],
+  msg: 'success'
+})

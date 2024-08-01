@@ -9,6 +9,7 @@ import alarmTitle from '@/assets/img/common/icon-address.png'
 import { useRouter } from 'vue-router'
 import { useRoute } from 'vue-router'
 import TreeTable from '../common/treeTable.vue'
+import { getRouterPlay } from '@/utils/rouyerPlay'
 const route = useRoute()
 const map = ref('')
 // 测距工具
@@ -284,6 +285,7 @@ onMounted(async () => {
   await getMarkerCoordinate()
   initMarker(map.value)
   await initAlarmMarker(map.value)
+  getRouterPlay()
 })
 </script>
 
