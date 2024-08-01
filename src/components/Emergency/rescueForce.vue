@@ -1,5 +1,6 @@
 <script setup>
 import { request } from '@/utils/axios'
+import { ElMessageBox } from 'element-plus'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -11,6 +12,16 @@ async function getRoundShip() {
     const res = await request('/MapRounddata')
     roundShip.value.push({ phone: res.data.phone, shipNumber: res.data.shipNumber })
   }
+}
+function informMsg() {
+  ElMessageBox.alert(
+    '<div>事故类型:人员落水</div> <div>坐标:120.7849 &nbsp; &nbsp;33.3784</div> <div>船主:XXX</div> <div>电话:1322222885</div>',
+    '短信通知内容',
+    {
+      dangerouslyUseHTMLString: true,
+      confirmButtonText: '确定'
+    }
+  )
 }
 onMounted(() => {
   getRoundShip()
@@ -44,7 +55,7 @@ onMounted(() => {
         <div>{{ item.phone }}</div>
       </div>
       <div class="force-content-message">
-        <el-button type="success">发送短信</el-button>
+        <el-button type="success" @click="informMsg">发送短信</el-button>
       </div>
     </div>
   </div>
