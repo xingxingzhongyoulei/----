@@ -3,6 +3,7 @@ import { ref, reactive, onMounted } from 'vue'
 const tabLabel = ['海警机构', '‌港务监督', '‌交通运输部', '‌渔业行政主管部门', '其他部门']
 import { Iphone, Location, OfficeBuilding, Tickets, User } from '@element-plus/icons-vue'
 import { request } from '@/utils/axios'
+import { showMessage } from '@/utils/Elements'
 const tableDesc = ref([])
 const activeIndex = ref(0)
 const emit = defineEmits(['close'])
@@ -17,6 +18,9 @@ async function handleClick(e) {
 }
 function handleClose() {
   emit('close')
+}
+function informMsg() {
+  showMessage('暂未开发', 'warning')
 }
 onMounted(() => {
   initInform()
@@ -76,7 +80,7 @@ onMounted(() => {
               {{ tabLabel[activeIndex] }}
             </el-descriptions-item>
             <el-descriptions-item>
-              <el-button type="primary">短信通知</el-button>
+              <el-button type="primary" @click="informMsg">短信通知</el-button>
             </el-descriptions-item>
           </el-descriptions>
         </el-tab-pane>
