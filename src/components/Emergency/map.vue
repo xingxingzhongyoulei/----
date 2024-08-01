@@ -201,6 +201,9 @@ async function initAlarmMarker(map) {
         <div class="content-item close" onclick="handleClose()">
         关闭
         </div>
+        <div class="content-item close" onclick="handleClose('back','${res.data.shipNumber}',${e.coordinate.x.toFixed(4)},${e.coordinate.y.toFixed(4)})">
+        轨迹回放
+        </div>
         <div class="content-item close" onclick="handleClose('accident-information','${res.data.shipNumber}',${e.coordinate.x.toFixed(4)},${e.coordinate.y.toFixed(4)})">
         立即调度处置
         </div>
@@ -228,6 +231,9 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
       break
     case 'alarmInform':
       treeInform()
+      break
+    case 'back':
+      getRouterPlay(map.value, multipointAlarm.value, [coordinateX, coordinateY])
       break
 
     default:
@@ -285,7 +291,6 @@ onMounted(async () => {
   await getMarkerCoordinate()
   initMarker(map.value)
   await initAlarmMarker(map.value)
-  getRouterPlay()
 })
 </script>
 

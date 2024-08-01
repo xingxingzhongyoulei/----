@@ -1,4 +1,4 @@
-import { mock } from 'mockjs'
+import { mock, Random } from 'mockjs'
 
 mock(/Mapdata/, 'get', {
   code: 0,
@@ -61,7 +61,7 @@ mock(/MapInformData/, 'get', {
   msg: 'success'
 })
 
-const Random = {
+const Randoms = {
   datetime: function (format, start, interval) {
     const startTimestamp = new Date(start).getTime() // 将起点时间转换为时间戳
     const randomOffset = Math.floor(Math.random() * (10 * 60 * 1000)) // 生成0到10分钟之间的随机时间偏移
@@ -78,13 +78,15 @@ const Random = {
 }
 mock(/MapRouterPlay/, 'get', {
   code: 0,
-  'list|30': [
+  'list|10': [
     {
       deviceType: 'AIS',
-      'longitude|120.3-120.99': 0,
-      'latitude|32.7-33.74': 0,
+      longitude: function () {
+        return parseFloat((Math.random() * (121.988 - 120.755) + 120.555).toFixed(3))
+      },
+      'latitude|33-33.5': 0,
       gpsTime: function () {
-        return Random.datetime('yyyy-MM-dd HH:mm:ss', '2024-07-05 04:06:21', '10m')
+        return Randoms.datetime('yyyy-MM-dd HH:mm:ss', '2024-07-05 04:06:21', '10m')
       }
     }
   ],
