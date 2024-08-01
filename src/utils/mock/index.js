@@ -49,3 +49,14 @@ mock(/MapRounddata/, 'get', {
   },
   msg: 'success'
 })
+
+mock(/MapInformData/, 'get', {
+  code: 0,
+  'data|1-4': [
+    {
+      name: '@cname',
+      phone: /^(136|159|188|153|177)\d{8}$/
+    }
+  ],
+  msg: 'success'
+})

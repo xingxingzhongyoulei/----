@@ -153,7 +153,6 @@ async function initAlarmMarker(map) {
   new maptalks.VectorLayer('vectorAlarm', multipointAlarm.value).addTo(map)
   // 信息框弹出
   multipointAlarm.value.on('click', async (e) => {
-    console.log(e.coordinate)
     // map.setCenter(e.coordinate)
     // 请求假数据
     const res = await request.get('/MapAlarmdata')
@@ -276,6 +275,9 @@ function mapToolShowToggle(bool) {
 function treeInform() {
   treeTableShow.value = true
 }
+function handleCloseTree() {
+  treeTableShow.value = false
+}
 defineExpose({ removeCircle, mapToolShowToggle })
 onMounted(async () => {
   initMap()
@@ -288,7 +290,7 @@ onMounted(async () => {
 <template>
   <div id="map-container"></div>
   <mapTool @handleClickUse="handleClickUse" ref="mapToolRef" v-if="mapToolShow"></mapTool>
-  <TreeTable v-if="treeTableShow"></TreeTable>
+  <TreeTable v-if="treeTableShow" @close="handleCloseTree"></TreeTable>
 </template>
 
 <style lang="scss" scoped>
