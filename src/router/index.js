@@ -38,6 +38,13 @@ const router = createRouter({
             leftTop: () => import('@/components/Emergency/accidentInformation.vue'),
             leftBottom: () => import('@/components/Emergency/rescueForce.vue')
           }
+        },
+        {
+          path: '/processEvent',
+          name: 'processEvent',
+          components: {
+            header: () => import('@/components/common/header.vue')
+          }
         }
       ]
     }

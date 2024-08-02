@@ -55,7 +55,7 @@ onMounted(() => {
         <div>{{ item.phone }}</div>
       </div>
       <div class="force-content-message">
-        <el-button type="success" @click="informMsg">发送短信</el-button>
+        <el-button type="success" @click="informMsg">发送通知</el-button>
       </div>
     </div>
   </div>

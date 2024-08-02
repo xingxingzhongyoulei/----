@@ -9,7 +9,10 @@ import alarmTitle from '@/assets/img/common/icon-address.png'
 import { useRouter } from 'vue-router'
 import { useRoute } from 'vue-router'
 import TreeTable from '../common/treeTable.vue'
+import accidentReporting from './accidentReporting.vue'
+import Form from './form.vue'
 import { getRouterPlay } from '@/utils/rouyerPlay'
+import Scheme from './scheme.vue'
 const route = useRoute()
 const map = ref('')
 // 测距工具
@@ -20,6 +23,9 @@ const markerCoordinate = ref(null)
 const mapToolShow = ref(true)
 // treeTable的显示隐藏
 const treeTableShow = ref(false)
+// form表单的显示隐藏
+const formShow = ref(false)
+const schemeShow = ref(false)
 // marker 点击弹窗
 function initMap() {
   map.value = new maptalks.Map('map-container', {
@@ -285,7 +291,27 @@ function treeInform() {
 function handleCloseTree() {
   treeTableShow.value = false
 }
-defineExpose({ removeCircle, mapToolShowToggle })
+function handleAccident(type) {
+  console.log(type)
+  switch (type) {
+    case '事故上报':
+      formShow.value = true
+      break
+    case '预案处理':
+      schemeShow.value = true
+      break
+
+    default:
+      break
+  }
+}
+function cancle() {
+  formShow.value = false
+}
+function handleClickScheme(bool) {
+  schemeShow.value = bool
+}
+defineExpose({ removeCircle, mapToolShowToggle, handleClickScheme })
 onMounted(async () => {
   initMap()
   await getMarkerCoordinate()
@@ -298,6 +324,9 @@ onMounted(async () => {
   <div id="map-container"></div>
   <mapTool @handleClickUse="handleClickUse" ref="mapToolRef" v-if="mapToolShow"></mapTool>
   <TreeTable v-if="treeTableShow" @close="handleCloseTree"></TreeTable>
+  <accidentReporting @handleAccident="handleAccident"></accidentReporting>
+  <Form v-show="formShow" @cancle="cancle"></Form>
+  <Scheme v-if="schemeShow" @handleClick="handleClickScheme"></Scheme>
 </template>
 
 <style lang="scss" scoped>

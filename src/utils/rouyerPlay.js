@@ -26,7 +26,6 @@ export async function getRouterPlay(map, multipointAlarm, alarmCoor) {
     coordinate: alarmCoor,
     time: 621000
   })
-  console.log(result)
   const data = formatRouteData(result, {})
 
   const player = new RoutePlayer(data, {

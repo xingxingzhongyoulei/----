@@ -13,6 +13,8 @@ watch(
       mapRef.value.mapToolShowToggle(true)
     } else if (newValue.path == '/accident-information' && mapRef.value != null) {
       mapRef.value.mapToolShowToggle(false)
+    } else if (newValue.path == '/processEvent' && mapRef.value != null) {
+      mapRef.value.handleClickScheme(true)
     }
   },
   {
