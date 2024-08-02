@@ -55,7 +55,9 @@ export async function getRouterPlay(map, multipointAlarm, alarmCoor) {
     symbol: {
       lineWidth: 4, //线串的宽度
       lineOpacity: 1, //线串的透明度
-      lineColor: '#0E65C1' //线串的颜色
+      lineColor: '#0E65C1', //线串的颜色
+      lineDasharray: [10, 10],
+      lineJoin: 'bevel'
     }
   }).addTo(layerLine)
 

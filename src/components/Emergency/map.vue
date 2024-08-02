@@ -77,13 +77,7 @@ async function initMarker(map) {
     dragShadow: false, // display a shadow during dragging
     drawOnAxis: null, // force dragging stick on a axis, can be: x, y
     symbol: {
-      // textFaceName: 'sans-serif',
-      // textName: 'point',
-      // textFill: '#34495e',
-      // textHorizontalAlignment: 'right',
-      // textSize: 40,
-      markerType: 'square',
-      markerType: 'ellipse',
+      markerType: 'triangle', // circle, square, ellipse
       markerFill: 'rgb(135,196,240)',
       markerFillOpacity: 1,
       markerLineColor: '#34495e',
@@ -91,10 +85,11 @@ async function initMarker(map) {
       markerLineOpacity: 1,
       markerLineDasharray: [],
       markerWidth: 10,
-      markerHeight: 10,
+      markerHeight: 20,
       markerDx: 0,
       markerDy: 0,
-      markerOpacity: 1
+      markerOpacity: 1,
+      markerRotation: 0
     }
   })
   new maptalks.VectorLayer('vectorMarker', multipoint.value).addTo(map)
