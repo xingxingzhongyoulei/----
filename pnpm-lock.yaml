@@ -8,15 +8,24 @@ importers:
 
   .:
     dependencies:
+      '@element-plus/icons-vue':
+        specifier: ^2.3.1
+        version: 2.3.1(vue@3.4.34)
       axios:
         specifier: ^1.7.2
         version: 1.7.2
+      dayjs:
+        specifier: ^1.11.12
+        version: 1.11.12
       element-plus:
         specifier: ^2.7.8
         version: 2.7.8(vue@3.4.34)
       maptalks:
         specifier: 1.0.0-rc.33
         version: 1.0.0-rc.33
+      maptalks.routeplayer:
+        specifier: ^1.0.0-rc.1
+        version: 1.0.0-rc.1
       mockjs:
         specifier: ^1.1.0
         version: 1.1.0
@@ -716,6 +725,9 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
 
+  geolib@3.3.3:
+    resolution: {integrity: sha512-YO704pzdB/8QQekQuDmFD5uv5RAwAf4rOUPdcMhdEOz+HoPWD0sC7Qqdwb+LAvwIjXVRawx0QgZlocKYh8PFOQ==}
+
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -826,6 +838,9 @@ packages:
 
   magic-string@0.30.10:
     resolution: {integrity: sha512-iIRwTIf0QKV3UAnYK4PU8uiEc4SRh5jX0mwpIwETPpHdhVM4f53RSwS/vXvN1JhGX+Cs7B8qIq3d6AH49O5fAQ==}
+
+  maptalks.routeplayer@1.0.0-rc.1:
+    resolution: {integrity: sha512-yRMI+pb2HLNCbzHOXfYxKNOaU49ONELAf6MYlttfi95lpQVOF/Shnl0DOCUIAMqoNyrFOHcTNU1w5QPeqdMMFw==}
 
   maptalks@1.0.0-rc.33:
     resolution: {integrity: sha512-ivIZMlN3DQ5dh5ZUpq8QmKNHvg29W05p8D/pcVnRdldvYBvO0FAyU6bBHc1Yqj/Eofuj2pYhBthFQwkyYaiHlA==}
@@ -1756,6 +1771,8 @@ snapshots:
   fsevents@2.3.3:
     optional: true
 
+  geolib@3.3.3: {}
+
   glob-parent@5.1.2:
     dependencies:
       is-glob: 4.0.3
@@ -1853,6 +1870,10 @@ snapshots:
   magic-string@0.30.10:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  maptalks.routeplayer@1.0.0-rc.1:
+    dependencies:
+      geolib: 3.3.3
 
   maptalks@1.0.0-rc.33:
     dependencies:

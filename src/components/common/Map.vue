@@ -1,7 +1,7 @@
 <script setup>
 import 'maptalks/dist/maptalks.css'
 import * as maptalks from 'maptalks'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 const map = ref(null)
 // 初始化地图
 function initMap() {
@@ -35,4 +35,10 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#map-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+</style>
