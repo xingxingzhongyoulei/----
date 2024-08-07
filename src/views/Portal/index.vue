@@ -22,7 +22,7 @@ function handleClick(obj) {
       showMessage('暂未开发', 'warning')
       break
     case '渔船进出港统计':
-      showMessage('暂未开发', 'warning')
+      router.push('/shipManagement')
       break
     case '告警分析':
       showMessage('暂未开发', 'warning')

@@ -312,6 +312,9 @@ onMounted(async () => {
   await getMarkerCoordinate()
   initMarker(map.value)
   await initAlarmMarker(map.value)
+  map.value.getLayers().forEach((item) => {
+    console.log(item)
+  })
 })
 </script>
 
