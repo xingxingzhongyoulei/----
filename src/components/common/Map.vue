@@ -58,12 +58,12 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .map-wrapper {
   position: absolute;
-  right: 0;
   bottom: 0;
-  top: 0;
-  left: 0;
-  // transition: all 0.5s linear;
+  top: 0; //
+  left: 0; //
   z-index: 0;
+  width: 100%;
+  // transition: all 0.5s linear;
 }
 #map-container {
   width: 100%;

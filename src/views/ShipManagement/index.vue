@@ -23,10 +23,7 @@ onMounted(() => {})
       </div>
       <Map></Map>
 
-      <div
-        class="app-wrapper"
-        :style="{ left: headerNavRef?.isCollapse || isCollapse ? '65px' : '200px' }"
-      >
+      <div class="app-wrapper">
         <div class="app-router">
           <RouterView></RouterView>
         </div>
@@ -48,20 +45,18 @@ onMounted(() => {})
     top: 50px;
     display: flex;
     .app-menu {
-      position: relative;
       width: 200px;
       height: 100vh;
-      transition: all 0.45s;
+      transition: all 0.5s;
       overflow: hidden;
-      z-index: 999;
+      z-index: 1;
     }
     .app-wrapper {
-      position: absolute;
-      top: 0;
-      left: 200px;
-      right: 0;
-      bottom: 0;
-      // z-index: 2;
+      position: relative;
+      flex: 1;
+      pointer-events: none;
+      height: 100%;
+      z-index: 2;
       // .app-router {
       //   position: absolute;
       //   top: 0;
