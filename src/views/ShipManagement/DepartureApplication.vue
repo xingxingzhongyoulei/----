@@ -6,9 +6,9 @@
 
 <style lang="scss" scoped>
 .application-wrapper {
-  position: absolute;
-  right: 0;
-  top: 0;
+  // position: absolute;
+  // right: 0;
+  // top: 0;
   width: 100px;
   height: 100px;
   line-height: 100px;

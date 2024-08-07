@@ -7,6 +7,9 @@ const router = [
       {
         path: 'DepartureApplication',
         name: 'DepartureApplication',
+        meta: {
+          title: '出港申请'
+        },
         component: () => import('@/views/ShipManagement/DepartureApplication.vue')
       }
     ]

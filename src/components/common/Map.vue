@@ -33,15 +33,7 @@ function initMap() {
 onMounted(() => {
   initMap()
 })
-watch(
-  props,
-  (newVal, oldVal) => {
-    console.log(newVal)
-  },
-  {
-    immediate: true
-  }
-)
+
 onUnmounted(() => {
   if (map.value) {
     map.value.remove()
@@ -59,7 +51,7 @@ onUnmounted(() => {
 .map-wrapper {
   position: absolute;
   bottom: 0;
-  top: 0; //
+  top: 45px; //
   left: 0; //
   z-index: 0;
   width: 100%;

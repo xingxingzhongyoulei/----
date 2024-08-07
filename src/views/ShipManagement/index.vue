@@ -2,6 +2,7 @@
 import Map from '@/components/common/Map.vue'
 import HeaderNav from '@/components/common/headerNav.vue'
 import Menu from '@/components/common/menu.vue'
+import Breadcrumb from '@/components/shipManagement/breadcrumb.vue'
 import { onMounted, ref } from 'vue'
 import { RouterView } from 'vue-router'
 // 导航栏实例
@@ -24,6 +25,8 @@ onMounted(() => {})
       <Map></Map>
 
       <div class="app-wrapper">
+        <Breadcrumb backPath="/shipManagement"></Breadcrumb>
+
         <div class="app-router">
           <RouterView></RouterView>
         </div>
