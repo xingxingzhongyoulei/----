@@ -11,6 +11,8 @@
   top: 0;
   width: 100px;
   height: 100px;
+  line-height: 100px;
+  text-align: center;
   background-color: red;
   color: black;
   font-size: 20px;
