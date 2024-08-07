@@ -19,13 +19,14 @@ const props = defineProps({
         default-active="/shipManagement"
         class="el-menu-vertical-demo"
         :collapse="props.isCollapse"
+        router
       >
         <el-sub-menu index="/shipManagement">
           <template #title>
             <el-icon><List /></el-icon>
             <span>进出港统计</span>
           </template>
-          <el-menu-item index="1-1">出港申请</el-menu-item>
+          <el-menu-item index="/shipManagement/DepartureApplication">出港申请</el-menu-item>
           <el-menu-item index="1-2">进出港记录</el-menu-item>
         </el-sub-menu>
         <el-menu-item index="2">
@@ -52,6 +53,11 @@ const props = defineProps({
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
+  .menu-list {
+    width: 100%;
+  }
 }
 :deep(.el-menu) {
   border: 0;

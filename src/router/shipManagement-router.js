@@ -6,7 +6,8 @@ const router = [
     children: [
       {
         path: 'DepartureApplication',
-        name: 'DepartureApplication'
+        name: 'DepartureApplication',
+        component: () => import('@/views/ShipManagement/DepartureApplication.vue')
       }
     ]
   }

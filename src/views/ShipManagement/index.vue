@@ -3,6 +3,7 @@ import Map from '@/components/common/Map.vue'
 import HeaderNav from '@/components/common/headerNav.vue'
 import Menu from '@/components/common/menu.vue'
 import { onMounted, ref } from 'vue'
+import { RouterView } from 'vue-router'
 // 导航栏实例
 const headerNavRef = ref(null)
 // 侧边栏是否展开
@@ -21,6 +22,15 @@ onMounted(() => {})
         <Menu :isCollapse="headerNavRef?.isCollapse || isCollapse"></Menu>
       </div>
       <Map></Map>
+
+      <div
+        class="app-wrapper"
+        :style="{ left: headerNavRef?.isCollapse || isCollapse ? '65px' : '200px' }"
+      >
+        <div class="app-router">
+          <RouterView></RouterView>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -36,15 +46,29 @@ onMounted(() => {})
     height: calc(100vh - 50px);
     position: relative;
     top: 50px;
+    display: flex;
     .app-menu {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 150px;
+      position: relative;
+      width: 200px;
       height: 100vh;
       transition: all 0.45s;
       overflow: hidden;
       z-index: 999;
+    }
+    .app-wrapper {
+      position: absolute;
+      top: 0;
+      left: 200px;
+      right: 0;
+      bottom: 0;
+      // z-index: -1;
+      // .app-router {
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   right: 0;
+      //   bottom: 0;
+      // }
     }
   }
 }

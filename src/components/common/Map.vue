@@ -62,7 +62,8 @@ onUnmounted(() => {
   bottom: 0;
   top: 0;
   left: 0;
-  transition: all 0.5s linear;
+  // transition: all 0.5s linear;
+  // z-index: 0;
 }
 #map-container {
   width: 100%;
