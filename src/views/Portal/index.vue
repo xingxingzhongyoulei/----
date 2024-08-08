@@ -25,7 +25,7 @@ function handleClick(obj) {
       router.push('/shipManagement')
       break
     case '告警分析':
-      showMessage('暂未开发', 'warning')
+      router.push('/alarmAnalyse')
       break
 
     default:

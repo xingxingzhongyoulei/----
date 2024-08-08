@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 
 const props = defineProps({
   isCollapse: {
@@ -7,16 +8,14 @@ const props = defineProps({
     default: false
   }
 })
-// onMounted(() => {
-//   console.log(props.isCollapse)
-// })
+const route = useRoute()
 </script>
 
 <template>
   <div class="menu-wrapper">
     <div class="menu-list">
       <el-menu
-        default-active="/shipManagement"
+        :default-active="route.path"
         class="el-menu-vertical-demo"
         :collapse="props.isCollapse"
         router
@@ -27,7 +26,7 @@ const props = defineProps({
             <span>进出港统计</span>
           </template>
           <el-menu-item index="/shipManagement/DepartureApplication">出港申请</el-menu-item>
-          <el-menu-item index="1-2">进出港记录</el-menu-item>
+          <el-menu-item index="/ShipManagement/PortRecord">进出港记录</el-menu-item>
         </el-sub-menu>
         <el-menu-item index="2">
           <el-icon><CollectionTag /></el-icon>
@@ -50,11 +49,8 @@ const props = defineProps({
 </style>
 <style lang="scss" scoped>
 .menu-wrapper {
-  transform: all 0.5s linear;
-
   .menu-list {
     width: 100%;
-    transform: all 0.5s linear;
   }
 }
 :deep(.el-menu) {

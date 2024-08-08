@@ -92,3 +92,22 @@ mock(/MapRouterPlay/, 'get', {
   ],
   msg: 'success'
 })
+
+mock(/ApplicationTabelData/, 'get', {
+  code: 0,
+  'data|10': [
+    {
+      'shipName|1': [
+        '@string("upper", 2)@integer(1000, 9999)',
+        '@string("upper", 1)@integer(10000, 99999)'
+      ],
+      shipLength: '@cname',
+      portName: /^(电建渔港1|电建渔港2|电建渔港3|电建渔港4)$/,
+      phone: /^1\d{10}$/,
+      cmdType: /^(北斗|AIS|GPS)$/,
+      portTypes: /^(出港|进港)$/,
+      startTime: '2024-08-08 12:21:00'
+    }
+  ],
+  msg: 'success'
+})

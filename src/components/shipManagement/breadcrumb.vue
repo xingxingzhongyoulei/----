@@ -27,27 +27,25 @@ watch(
     <router-link
       class="breadcrumb-item"
       to="/shipManagement"
-      @click="console.log(111)"
       :class="{ active: route.path === props.backPath }"
     >
       <el-icon><House /></el-icon><span>首页</span>
     </router-link>
 
-    <span v-if="newRouteName" class="breadcrumb-item active" @click="console.log(123)">{{
-      newRouteName
-    }}</span>
+    <span v-if="newRouteName" class="breadcrumb-item active">{{ newRouteName }}</span>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .breadcrumb-wrapper {
-  position: relative;
+  //   position: relative;
   width: 100%;
   height: 45px;
   line-height: 40px;
   background-color: #ffffff;
   text-align: left;
   padding-left: 25px;
+  pointer-events: auto;
   .breadcrumb-item {
     // display: inline-block;
     cursor: pointer;
