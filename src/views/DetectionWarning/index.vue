@@ -1,19 +1,19 @@
 <script setup>
-import Map from '@/components/common/Map.vue'
+import Map from '@/components/DetectionWarning/Map.vue'
 import HeaderNav from '@/components/common/headerNav.vue'
 import Menu from '@/components/common/menu.vue'
 import Breadcrumb from '@/components/shipManagement/breadcrumb.vue'
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { RouterView } from 'vue-router'
-import { shipManagementMenu } from '@/components/common/menu'
+import { detectionWarningMenu } from '@/components/common/menu'
 // 导航栏实例
 const headerNavRef = ref(null)
 // 侧边栏是否展开
 const isCollapse = ref(false)
 const route = useRoute()
 const MapIsShow = ref(true)
-const MapIsShowArr = ['/shipManagement/DepartureApplication']
+const MapIsShowArr = ['/detectionWarning/arrivalWarning']
 watch(
   () => route.path,
   (newVal) => {
@@ -36,13 +36,12 @@ watch(
       >
         <Menu
           :isCollapse="headerNavRef?.isCollapse || isCollapse"
-          :menuArr="shipManagementMenu"
+          :menuArr="detectionWarningMenu"
         ></Menu>
       </div>
-      <Map v-if="MapIsShow"></Map>
-
+      <Map v-if="MapIsShow" :isCollapse="headerNavRef?.isCollapse || isCollapse"></Map>
       <div class="app-wrapper">
-        <Breadcrumb backPath="/shipManagement"></Breadcrumb>
+        <Breadcrumb backPath="/detectionWarning"></Breadcrumb>
         <div class="app-router">
           <RouterView></RouterView>
         </div>

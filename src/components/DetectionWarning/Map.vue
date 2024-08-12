@@ -9,14 +9,25 @@ import TreeTable from '@/components/common/treeTable.vue'
 import MapToolCoorZoom from '@/components/common/Map-tool-coor-Zoom.vue'
 const router = useRouter()
 const map = ref(null)
-// treeTable的显示隐藏
-const treeTableShow = ref(false)
+
 const props = defineProps({
   left: {
     type: Number,
     default: 200
+  },
+  isCollapse: {
+    type: Boolean,
+    default: false
   }
 })
+const isCollapse = ref(false)
+watch(
+  () => props.isCollapse,
+  (newVal) => {
+    isCollapse.value = newVal
+  },
+  { immediate: true }
+)
 const layerArr = ref({})
 const markerCoordinate = ref(null)
 
@@ -25,6 +36,7 @@ const mapCoordinate = ref({
   x: 121.13,
   y: 33.38
 })
+
 // 初始化地图
 function initMap() {
   map.value = new maptalks.Map('map-container', {
@@ -155,8 +167,6 @@ function initMultiPointGeoJson(coor, rotate) {
   layerArr.value.layerMultiPoint.addGeometry(marker.value.alarmMarker)
 }
 window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
-  console.log(e)
-
   marker.value.alarmMarker.closeInfoWindow()
   switch (e) {
     case 'accident-information':
@@ -173,44 +183,6 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
       break
   }
 }
-// 点击立即调度 产生一个圆形区域
-function dispatchCircular(coordinate, params, coordinateX, coordinateY) {
-  let roundNum = 0
-  const circle = new maptalks.Circle(coordinate, 25000, {
-    id: 'circle',
-    symbol: {
-      lineColor: '#00ffff',
-      lineWidth: 2,
-      polygonFill: '#00ffff',
-      polygonOpacity: 0.2
-    }
-  })
-  removeCircle()
-  layerArr.value.circleLayer = new maptalks.VectorLayer('circleLayer', circle).addTo(map.value)
-  for (let i = 0; i < markerCoordinate.value.length; i++) {
-    if (circle.containsPoint(new maptalks.Coordinate(markerCoordinate.value[i]))) {
-      roundNum++
-    }
-  }
-  router.push({
-    path: '/accident-information',
-    query: { id: params, coordinateX, coordinateY, roundNum }
-  })
-  // return roundNum
-}
-// 移除圆形图层
-function removeCircle() {
-  if (map.value.getLayer('circleLayer')) {
-    map.value.removeLayer('circleLayer')
-  }
-}
-// 树形图通知
-function treeInform() {
-  treeTableShow.value = true
-}
-function handleCloseTree() {
-  treeTableShow.value = false
-}
 
 onMounted(() => {
   initMap()
@@ -219,10 +191,9 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  layerArr.value.forEach((item) => {
-    item.remove()
-  })
-  layerArr.value = {}
+  if (layerArr.value) {
+    layerArr.value = {}
+  }
   if (map.value) {
     map.value.remove()
     map.value = null
@@ -231,11 +202,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <TreeTable v-if="treeTableShow" @close="handleCloseTree"></TreeTable>
   <div class="map-wrapper">
     <div id="map-container"></div>
   </div>
-  <MapToolCoorZoom v-if="map" :map="map" :coor="mapCoordinate" :zoom="mapZoom"></MapToolCoorZoom>
+  <MapToolCoorZoom
+    v-if="map"
+    :map="map"
+    :coor="mapCoordinate"
+    :zoom="mapZoom"
+    :left="isCollapse ? 80 : 215"
+  ></MapToolCoorZoom>
 </template>
 
 <style lang="scss" scoped>

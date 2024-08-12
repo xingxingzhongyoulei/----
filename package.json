@@ -16,6 +16,7 @@
     "dayjs": "^1.11.12",
     "echarts": "^5.5.1",
     "element-plus": "^2.7.8",
+    "file-saver": "^2.0.5",
     "maptalks": "1.0.0-rc.33",
     "maptalks.routeplayer": "^1.0.0-rc.1",
     "mockjs": "^1.1.0",
@@ -24,7 +25,8 @@
     "vue-router": "^4.3.3",
     "vue3-puzzle-vcode": "^1.1.7",
     "vue3-seamless-scroll": "^2.0.1",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "xlsx-style": "^0.8.13"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",

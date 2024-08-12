@@ -26,7 +26,7 @@ watch(
   <div class="breadcrumb-wrapper">
     <router-link
       class="breadcrumb-item"
-      to="/shipManagement"
+      :to="props.backPath"
       :class="{ active: route.path === props.backPath }"
     >
       <el-icon><House /></el-icon><span>首页</span>

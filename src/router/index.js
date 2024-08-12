@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import emergencyRouter from './emergency-router'
+import EmergencyRouter from './emergency-router'
 import ShipManagementRouter from './shipManagement-router'
+import DetectionWarningRouter from './detectionWarning-router'
 const routes = [
   {
     // 登录页
@@ -14,8 +15,9 @@ const routes = [
     name: 'portal',
     component: () => import('@/views/Portal/index.vue')
   },
-  ...emergencyRouter,
-  ...ShipManagementRouter
+  ...EmergencyRouter,
+  ...ShipManagementRouter,
+  ...DetectionWarningRouter
 ]
 
 const router = createRouter({

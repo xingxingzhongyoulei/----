@@ -10,6 +10,10 @@ const tabsItem = [
   {
     label: '船舶管理',
     name: 'shipManagement'
+  },
+  {
+    label: '探测及系统预警',
+    name: 'DetectionWarning'
   }
 ]
 const router = useRouter()
@@ -26,6 +30,12 @@ function handleClick(obj) {
       break
     case '告警分析':
       router.push('/alarmAnalyse')
+      break
+    case '目标航迹信息':
+      router.push('/detectionWarning')
+      break
+    case '检测告警':
+      router.push('/detectionWarning')
       break
 
     default:

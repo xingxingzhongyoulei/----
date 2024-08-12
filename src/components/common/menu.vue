@@ -1,11 +1,15 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-
+import { shipManagementMenu } from './menu'
 const props = defineProps({
   isCollapse: {
     type: Boolean,
     default: false
+  },
+  menuArr: {
+    type: Array,
+    default: []
   }
 })
 const route = useRoute()
@@ -19,19 +23,21 @@ const route = useRoute()
         class="el-menu-vertical-demo"
         :collapse="props.isCollapse"
         router
+        unique-opened
       >
-        <el-sub-menu index="/shipManagement">
-          <template #title>
-            <el-icon><List /></el-icon>
-            <span>进出港统计</span>
-          </template>
-          <el-menu-item index="/shipManagement/DepartureApplication">出港申请</el-menu-item>
-          <el-menu-item index="/ShipManagement/PortRecord">进出港记录</el-menu-item>
-        </el-sub-menu>
-        <el-menu-item index="2">
-          <el-icon><CollectionTag /></el-icon>
-          <template #title>其他功能</template>
-        </el-menu-item>
+        <template v-for="(item, index) in props.menuArr" :key="index">
+          <el-sub-menu :index="item.index">
+            <template #title>
+              <el-icon>
+                <component :is="item.icon" />
+              </el-icon>
+              <span>{{ item.title }}</span>
+            </template>
+            <template v-for="(obj, i) in item.children" :key="i">
+              <el-menu-item :index="obj.index">{{ obj.title }}</el-menu-item>
+            </template>
+          </el-sub-menu>
+        </template>
       </el-menu>
     </div>
   </div>

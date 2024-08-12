@@ -11,7 +11,8 @@ defineProps({
 const emit = defineEmits(['handleClick'])
 const items = {
   emergencyRescue: ['应急救援', '烟火告警'],
-  shipManagement: ['渔船进出港统计', '告警分析']
+  shipManagement: ['渔船进出港统计', '告警分析'],
+  DetectionWarning: ['目标航迹信息', '检测告警']
 }
 // 是否全部应用
 const isTotalUse = ref(true)
