@@ -102,12 +102,41 @@ mock(/ApplicationTabelData/, 'get', {
         '@string("upper", 1)@integer(10000, 99999)'
       ],
       shipLength: '@cname',
-      portName: /^(电建渔港1|电建渔港2|电建渔港3|电建渔港4)$/,
+      portName: /^(电建渔港01|电建渔港02|电建渔港03|电建渔港04)$/,
       phone: /^1\d{10}$/,
-      cmdType: /^(北斗|AIS|GPS)$/,
+      cmdType: /^(北斗|AIS|雷达)$/,
       portTypes: /^(出港|进港)$/,
       startTime: '2024-08-08 12:21:00'
     }
   ],
+  msg: 'success'
+})
+
+// 船舶告警分析数据
+mock(/AlarmAnalyseData/, 'get', {
+  code: 0,
+  'data|10': [
+    {
+      'shipName|1': [
+        '@string("upper", 2)@integer(1000, 9999)',
+        '@string("upper", 1)@integer(10000, 99999)'
+      ],
+      shipLength: '@cname',
+      shipTypes: /^(乡镇船|在册船|国库船)$/,
+      portName: /^(电建渔港01|电建渔港02|电建渔港03|电建渔港04)$/,
+      portTypes: /^(出港|进港)$/,
+      startTime: '@datetime',
+      dataResouurce: '船舶抓拍'
+    }
+  ],
+  msg: 'success'
+})
+
+// 坐标数据
+mock(/MultiPointData/, 'get', {
+  code: 0,
+  data: {
+    'rotate|0-360': 0
+  },
   msg: 'success'
 })

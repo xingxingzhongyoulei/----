@@ -3,6 +3,8 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import '@/assets/css/main.css'
+// 导入字体图标
+import '@/assets/img/property/fonts/iconfont.css'
 // 导入element-plus的css样式
 import 'element-plus/dist/index.css'
 import ElementPlus from 'element-plus'

@@ -228,7 +228,7 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
   multipoint.value.closeInfoWindow()
   switch (e) {
     case 'accident-information':
-      dispatchCircular([coordinateX, coordinateY], params, coordinateX, coordinateY)
+      dispatchCircular([coordinateX], params, coordinateX, coordinateY)
       break
     case 'alarmInform':
       treeInform()

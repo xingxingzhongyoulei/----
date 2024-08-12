@@ -25,8 +25,7 @@ function initMap() {
     baseLayer: new maptalks.TileLayer('base', {
       urlTemplate:
         'https://gss{s}.bdstatic.com/8bo_dTSlRsgBo1vgoIiO_jowehsv/tile/?qt=tile&x={x}&y={y}&z={z}&styles=pl&scaler=1&udt=20170927',
-      subdomains: [0, 1, 2, 3],
-      attribution: '&copy; <a target="_blank" href="http://map.baidu.com">Baidu</a>'
+      subdomains: [0, 1, 2, 3]
     })
   })
 }
@@ -50,12 +49,13 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .map-wrapper {
   position: absolute;
-  bottom: 0;
-  top: 45px; //
+  top: 0;
   left: 0; //
+  right: 0;
+  bottom: 0;
   z-index: 0;
   width: 100%;
-  // transition: all 0.5s linear;
+  height: 100%;
 }
 #map-container {
   width: 100%;

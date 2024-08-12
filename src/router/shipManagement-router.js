@@ -25,7 +25,18 @@ const router = [
   {
     path: '/alarmAnalyse',
     name: 'alarmAnalyse',
-    component: () => import('@/views/alarmAnalyse/index.vue')
+    component: () => import('@/views/alarmAnalyse/index.vue'),
+    children: [
+      {
+        path: '',
+        name: 'alarmAnalyse',
+        components: {
+          header: () => import('@/views/alarmAnalyse/layout/headerTitle/index.vue'),
+          left: () => import('@/views/alarmAnalyse/layout/left/index.vue'),
+          right: () => import('@/views/alarmAnalyse/layout/right/index.vue')
+        }
+      }
+    ]
   }
 ]
 export default router

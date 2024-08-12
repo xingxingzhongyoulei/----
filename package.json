@@ -14,6 +14,7 @@
     "@element-plus/icons-vue": "^2.3.1",
     "axios": "^1.7.2",
     "dayjs": "^1.11.12",
+    "echarts": "^5.5.1",
     "element-plus": "^2.7.8",
     "maptalks": "1.0.0-rc.33",
     "maptalks.routeplayer": "^1.0.0-rc.1",
@@ -22,6 +23,7 @@
     "vue": "^3.4.29",
     "vue-router": "^4.3.3",
     "vue3-puzzle-vcode": "^1.1.7",
+    "vue3-seamless-scroll": "^2.0.1",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
