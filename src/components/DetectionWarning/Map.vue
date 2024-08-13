@@ -29,7 +29,6 @@ watch(
   { immediate: true }
 )
 const layerArr = ref({})
-const markerCoordinate = ref(null)
 
 const mapZoom = ref(8)
 const mapCoordinate = ref({
@@ -39,7 +38,7 @@ const mapCoordinate = ref({
 
 // 初始化地图
 function initMap() {
-  map.value = new maptalks.Map('map-container', {
+  map.value = new maptalks.Map('map-container-detection', {
     // center: [120.13, 33.38],
     center: mapCoordinate.value,
     maxZoom: 18,
@@ -97,7 +96,6 @@ async function initMultiPoint() {
   layerArr.value.layerMultiPoint = new maptalks.VectorLayer('layerMultiPoint').addTo(map.value)
 
   const res = await request.get('/jsonData/makerCoordinate.json')
-  markerCoordinate.value = res
   res.forEach(async (coor) => {
     const rotate = await request.get('/MultiPointData')
     initMultiPointGeoJson(coor, rotate.data.rotate)
@@ -188,6 +186,7 @@ onMounted(() => {
   initMap()
   initPolygon()
   initMultiPoint()
+  window.$dection = map.value
 })
 
 onUnmounted(() => {
@@ -198,12 +197,16 @@ onUnmounted(() => {
     map.value.remove()
     map.value = null
   }
+  if (window.$dection) {
+    window.$dection.remove()
+    window.$dection = null
+  }
 })
 </script>
 
 <template>
   <div class="map-wrapper">
-    <div id="map-container"></div>
+    <div id="map-container-detection"></div>
   </div>
   <MapToolCoorZoom
     v-if="map"
@@ -225,7 +228,7 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
 }
-#map-container {
+#map-container-detection {
   width: 100%;
   height: 100%;
   overflow: hidden;
