@@ -3,6 +3,7 @@ import Table from '@/components/common/table.vue'
 import { request } from '@/utils/axios'
 import { onMounted, ref } from 'vue'
 import Form from '@/components/common/form.vue'
+import { exportToExcel } from '@/utils/common'
 const tableData = ref([])
 const column = [
   {
@@ -145,7 +146,19 @@ function handleForm(type, data) {
       console.log('查询')
       break
     case 'export':
-      console.log('导出')
+      exportToExcel(
+        tableData.value,
+        {
+          船名: 'shipName',
+          船主: 'shipLength',
+          渔港名称: 'portName',
+          联系电话: 'phone',
+          终端类型: 'cmdType',
+          进出港类型: 'portTypes',
+          进出港时间: 'startTime'
+        },
+        '出港申请船只'
+      )
       break
     default:
       break

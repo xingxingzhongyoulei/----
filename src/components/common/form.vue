@@ -101,6 +101,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .form-wrapper {
   text-align: left;
+  margin: 15px 0;
 }
 .form {
   display: flex;

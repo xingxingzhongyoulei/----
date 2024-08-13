@@ -1,4 +1,13 @@
 import { mock, Random } from 'mockjs'
+import { getRandomTimestampInRange, randomArr } from '../common'
+
+// 船名: 'shipName',
+// 船主: 'shipLength',
+// 渔港名称: 'portName',
+// 联系电话: 'phone',
+// 终端类型: 'cmdType',
+// 进出港类型: 'portTypes',
+// 进出港时间: 'startTime'
 
 mock(/Mapdata/, 'get', {
   code: 0,
@@ -92,10 +101,9 @@ mock(/MapRouterPlay/, 'get', {
   ],
   msg: 'success'
 })
-
-mock(/ApplicationTabelData/, 'get', {
-  code: 0,
-  'data|10': [
+// 表格数据
+const TableData = mock({
+  'data|150': [
     {
       'shipName|1': [
         '@string("upper", 2)@integer(1000, 9999)',
@@ -108,8 +116,21 @@ mock(/ApplicationTabelData/, 'get', {
       portTypes: /^(出港|进港)$/,
       startTime: '2024-08-08 12:21:00'
     }
-  ],
-  msg: 'success'
+  ]
+})
+mock(/ApplicationTabelData/, 'get', (opt) => {
+  const pageOpt = JSON.parse(opt.body)
+  const start = (pageOpt.current - 1) * pageOpt.size
+  const end = pageOpt.size * pageOpt.current
+  // const totalPage = Math.ceil(TableData.data.length / pageOpt.size)
+  const totalPage = TableData.data.length
+  const data = pageOpt.current > totalPage ? [] : TableData.data.slice(start, end)
+  return {
+    code: 0,
+    data,
+    total: totalPage,
+    msg: 'success'
+  }
 })
 
 // 船舶告警分析数据
@@ -139,4 +160,42 @@ mock(/MultiPointData/, 'get', {
     'rotate|0-360': 0
   },
   msg: 'success'
+})
+
+// 点击表格的查看，渲染Drawer的数据
+mock(/getDrawerData/, 'get', (opt) => {
+  const data = JSON.parse(opt.body)
+  const shipTypes = ['乡镇船', '在册船', '国库船']
+  const workTypes = ['捕捞渔船', '养殖渔船', '拖网渔船', '围网渔船', '张网渔船']
+  const untrustworthys = ['是', '否']
+  const shipStatuss = ['在线', '离线']
+  return {
+    ...data,
+    shipType: randomArr(shipTypes),
+    workType: randomArr(workTypes),
+    untrustworthy: randomArr(untrustworthys),
+    shipStatus: randomArr(shipStatuss),
+    threeNo: randomArr(untrustworthys)
+  }
+})
+
+mock(/queryTableData/, 'get', (opt) => {
+  let data = JSON.parse(opt.body)
+  const portTypes = ['电建渔港001', '电建渔港002', '电建渔港003', '电建渔港004']
+  if (data.cmdType == '') {
+    data.cmdType = randomArr(['北斗', 'AIS', '雷达'])
+  }
+  if (data.shipLength == '') {
+    data.shipLength = randomArr(['李超', '孙丽', '张三', '李四'])
+  }
+  if (data.shipName == '') {
+    data.shipName = randomArr(['J51024', 'A50241', 'A50241'])
+  }
+
+  return {
+    ...data,
+    portName: randomArr(portTypes),
+    startTime: getRandomTimestampInRange(data.startTime[0], data.startTime[1]),
+    total: 1
+  }
 })

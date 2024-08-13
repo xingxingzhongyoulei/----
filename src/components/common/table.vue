@@ -10,7 +10,11 @@ const props = defineProps({
     default: [],
     required: false
   },
-  control: { type: Array, default: [], required: true }
+  control: { type: Array, default: [], required: true },
+  height:{
+    type: Number,
+    default: 530
+  }
 })
 const emits = defineEmits(['handleClick'])
 function handleClick(e) {
@@ -23,6 +27,7 @@ function handleClick(e) {
     <el-table
       :data="data"
       style="width: 100%"
+      :height="height"
       v-loading="false"
       element-loading-text="拼命加载中"
       element-loading-spinner="el-icon-loading"

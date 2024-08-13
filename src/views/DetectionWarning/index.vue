@@ -28,7 +28,7 @@ watch(
 
 <template>
   <div class="manage-wrapper">
-    <HeaderNav ref="headerNavRef"></HeaderNav>
+    <HeaderNav ref="headerNavRef" :title="'预警管理'"></HeaderNav>
     <div class="admin">
       <div
         class="app-menu"

@@ -7,55 +7,7 @@ import * as XLSX from 'xlsx'
 const getAssetsFile = (url) => new URL(`../assets/images/${url}`, import.meta.url).href
 
 /**
- * 将表格数据导出excel
- * @param {*} jsonData
- * @param {*} customHeaders
- * @param {*} filename
- */
-// function exportToExcel(data) {
-//   // 创建一个工作簿
-//   const workbook = XLSX.utils.book_new()
-
-//   // 转换数据为工作表
-//   const ws = XLSX.utils.json_to_sheet(
-//     data.map((item) => ({
-//       船名: item.shipName,
-//       船主: item.shipLength, // 注意：这里的shipLength实际上是船主的名字
-//       渔港名称: item.portName,
-//       联系方式: item.phone,
-//       终端类型: item.cmdType,
-//       进出港类型: item.portTypes,
-//       进出港时间: item.startTime
-//     }))
-//   )
-
-//   // 将工作表添加到工作簿
-//   XLSX.utils.book_append_sheet(workbook, ws, '船只数据')
-
-//   // 生成Excel文件
-//   const wbout = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' })
-
-//   // 触发下载
-//   function s2ab(s) {
-//     const buf = new ArrayBuffer(s.length)
-//     const view = new Uint8Array(buf)
-//     for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff
-//     return buf
-//   }
-
-//   const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' })
-//   const url = URL.createObjectURL(blob)
-//   const a = document.createElement('a')
-//   a.href = url
-//   a.download = '船只数据.xlsx'
-//   document.body.appendChild(a)
-//   a.click()
-//   document.body.removeChild(a)
-//   URL.revokeObjectURL(url)
-// }
-
-/**
- *
+ *将对象数组导出为excel
  * @param {*} data  [{}]
  * @param {*} headers {标题名：数据的属性名,......}
  * @param {*} filename
@@ -103,5 +55,28 @@ function exportToExcel(data, headers, filename = '船只数据') {
   document.body.removeChild(a)
   URL.revokeObjectURL(url)
 }
+/**
+ * 传入参数的时间值为elements的时间选择器的值，未作处理  直接传入
+ * @param {*} start  起始时间
+ * @param {*} end  结束时间
+ * @returns 2024-12-12 12:12:12这样类型的时间
+ */
+function getRandomTimestampInRange(start, end) {
+  const startTime = new Date(start).getTime()
+  const endTime = new Date(end).getTime()
+  const randomTime = startTime + Math.random() * (endTime - startTime)
+  return new Date(randomTime)
+    .toISOString()
+    .replace('T', ' ')
+    .replace(/\.\d+Z/, '')
+}
 
-export { getAssetsFile, exportToExcel }
+/**
+ * 随机返回数组中的任意一个值
+ * @param {*} arr
+ * @returns
+ */
+function randomArr(arr) {
+  return arr[Math.floor(Math.random() * arr.length)]
+}
+export { getAssetsFile, exportToExcel, getRandomTimestampInRange, randomArr }

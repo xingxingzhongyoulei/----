@@ -4,6 +4,8 @@ import { request } from '@/utils/axios'
 import { onMounted, ref } from 'vue'
 import Form from '@/components/common/form.vue'
 import { exportToExcel } from '@/utils/common'
+import Pagination from '@/components/common/pagination.vue'
+import Drawer from '@/components/common/Drawer.vue'
 const tableData = ref([])
 const column = [
   {
@@ -22,23 +24,13 @@ const column = [
     width: 180
   },
   {
-    prop: 'phone',
-    label: '联系电话',
-    width: 180
-  },
-  {
     prop: 'cmdType',
     label: '设备类型',
     width: 180
   },
   {
-    prop: 'portTypes',
-    label: '进出港类型',
-    width: 180
-  },
-  {
     prop: 'startTime',
-    label: '预计出港时间',
+    label: '进港时间',
     width: 280
   }
 ]
@@ -64,16 +56,10 @@ const formItems = [
     placeholder: '请输入船长'
   },
   {
-    label: '联系电话',
-    prop: 'phone',
-    type: 'input',
-    placeholder: '请输入联系电话'
-  },
-  {
-    label: '预计出港时间',
+    label: '进港时间',
     prop: 'startTime',
     type: 'datetime',
-    placeholder: '请输入预计出港时间'
+    placeholder: ''
   },
   {
     label: '设备类型',
@@ -96,22 +82,6 @@ const formItems = [
     ]
   },
   {
-    label: '进出港类型',
-    prop: 'portTypes',
-    type: 'select',
-    placeholder: '请选择进出港类型',
-    options: [
-      {
-        label: '进港',
-        value: '进港'
-      },
-      {
-        label: '出港',
-        value: '出港'
-      }
-    ]
-  },
-  {
     name: '查询',
     prop: 'query',
     type: 'button'
@@ -126,29 +96,56 @@ const formItems = [
 const formModel = {
   shipName: '',
   shipLength: '',
-  phone: '',
   startTime: '',
-  cmdType: '',
-  portTypes: ''
+  cmdType: ''
 }
+const drawerRef = ref(null)
+const drawerData = ref({
+  shipName: '',
+  shipOwner: '',
+  portName: '',
+  phone: '',
+  cmdType: '',
+  portTypes: '',
+  startTime: ''
+})
 //表格点击事件
 function handleClick(row) {
-  console.log(row)
+  drawerData.value = row
+  drawerRef?.value.showDrawer()
 }
+const paginationOpt = ref({
+  current: 1,
+  size: 10
+})
+const pageTotal = ref(0)
 async function initTableData() {
-  const res = await request.get('/ApplicationTabelData')
+  const res = await request.get('/ApplicationTabelData', {
+    data: {
+      ...paginationOpt.value
+    }
+  })
+
   tableData.value = res.data
+  pageTotal.value = res.total
+}
+async function queryTableData(val) {
+  const res = await request.get('/queryTableData', {
+    data: {
+      ...val
+    }
+  })
+  tableData.value = [res]
+  pageTotal.value = res.total
 }
 // 表单触发事件
 function handleForm(type, data) {
   switch (type) {
     case 'query':
-      console.log('查询')
+      queryTableData(data)
+
       break
     case 'export':
-      console.log('导出')
-      console.log(tableData.value)
-
       exportToExcel(
         tableData.value,
         {
@@ -157,8 +154,8 @@ function handleForm(type, data) {
           渔港名称: 'portName',
           联系方式: 'phone',
           终端类型: 'cmdType',
-          进出港类型: 'portTypes',
-          进出港时间: 'startTime'
+          进港类型: 'portTypes',
+          进港时间: 'startTime'
         },
         '进港警告船只数据'
       )
@@ -169,6 +166,23 @@ function handleForm(type, data) {
   }
 }
 
+// 监听分页器current、size变化
+function handlePaginationChange(type, val) {
+  console.log(type)
+  console.log(val)
+  switch (type) {
+    case 'current':
+      paginationOpt.value.current = val
+      initTableData()
+      break
+    case 'size':
+      paginationOpt.value.size = val
+      initTableData()
+      break
+    default:
+      break
+  }
+}
 onMounted(() => {
   initTableData()
 })
@@ -188,6 +202,12 @@ onMounted(() => {
         :control="control"
       ></Table>
     </div>
+    <Pagination
+      @handlePaginationChange="handlePaginationChange"
+      :paginationOpt="paginationOpt"
+      :total="pageTotal"
+    ></Pagination>
+    <Drawer ref="drawerRef" :drawerData="drawerData"></Drawer>
   </div>
 </template>
 

@@ -29,7 +29,7 @@ const router = [
     children: [
       {
         path: '',
-        name: 'alarmAnalyse',
+        name: 'alarmAnalyse-data',
         components: {
           header: () => import('@/views/alarmAnalyse/layout/headerTitle/index.vue'),
           left: () => import('@/views/alarmAnalyse/layout/left/index.vue'),

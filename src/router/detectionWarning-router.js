@@ -13,22 +13,31 @@ const router = [
         }
       },
       {
-        path: 'arrivalWarning',
-        name: 'arrivalWarning',
-        component: () => import('@/views/DetectionWarning/arrivalWarning.vue'),
+        path: 'outWarning',
+        name: 'outWarning',
+        component: () => import('@/views/DetectionWarning/outWarning.vue'),
         meta: {
           title: '离港告警'
         }
       },
       {
-        path: 'arrivalWarning',
-        name: 'arrivalWarning',
-        component: () => import('@/views/DetectionWarning/arrivalWarning.vue'),
+        path: 'engagingWarning',
+        name: 'engagingWarning',
+        component: () => import('@/views/DetectionWarning/engagingWarning.vue'),
         meta: {
           title: '搭靠告警'
+        }
+      },
+      {
+        path: 'trackInformation',
+        name: 'trackInformation',
+        component: () => import('@/views/DetectionWarning/engagingWarning.vue'),
+        meta: {
+          title: '航迹信息'
         }
       }
     ]
   }
 ]
+
 export default router

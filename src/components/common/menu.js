@@ -42,12 +42,12 @@ export const detectionWarningMenu = [
         icon: 'CollectionTag'
       },
       {
-        index: '/detectionWarning/PortRecord',
+        index: '/detectionWarning/outWarning',
         title: '离港告警',
         icon: 'CollectionTag'
       },
       {
-        index: '/detectionWarning/PortRecord',
+        index: '/detectionWarning/engagingWarning',
         title: '搭靠告警',
         icon: 'CollectionTag'
       }
