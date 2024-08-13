@@ -54,7 +54,13 @@ const getAssetsFile = (url) => new URL(`../assets/images/${url}`, import.meta.ur
 //   URL.revokeObjectURL(url)
 // }
 
-function exportToExcel(data, headers) {
+/**
+ *
+ * @param {*} data  [{}]
+ * @param {*} headers {标题名：数据的属性名,......}
+ * @param {*} filename
+ */
+function exportToExcel(data, headers, filename = '船只数据') {
   // 创建一个工作簿
   const workbook = XLSX.utils.book_new()
 
@@ -72,7 +78,7 @@ function exportToExcel(data, headers) {
   )
 
   // 将工作表添加到工作簿
-  XLSX.utils.book_append_sheet(workbook, ws, '船只数据')
+  XLSX.utils.book_append_sheet(workbook, ws, filename)
 
   // 生成Excel文件
   const wbout = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' })
@@ -91,7 +97,7 @@ function exportToExcel(data, headers) {
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
-  a.download = '船只数据.xlsx'
+  a.download = `${filename}.xlsx`
   document.body.appendChild(a)
   a.click()
   document.body.removeChild(a)
