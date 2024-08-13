@@ -31,7 +31,7 @@ const router = [
       {
         path: 'trackInformation',
         name: 'trackInformation',
-        component: () => import('@/views/DetectionWarning/engagingWarning.vue'),
+        component: () => import('@/views/DetectionWarning/trackInformation.vue'),
         meta: {
           title: '航迹信息'
         }

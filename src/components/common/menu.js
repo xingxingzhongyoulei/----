@@ -25,7 +25,7 @@ export const detectionWarningMenu = [
     icon: 'List',
     children: [
       {
-        index: '/shipManagement/DepartureApplication',
+        index: '/DetectionWarning/trackInformation',
         title: '实时航迹信息',
         icon: 'CollectionTag'
       }

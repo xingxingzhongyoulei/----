@@ -13,7 +13,7 @@ const headerNavRef = ref(null)
 const isCollapse = ref(false)
 const route = useRoute()
 const MapIsShow = ref(true)
-const MapIsShowArr = ['/detectionWarning/arrivalWarning']
+const MapIsShowArr = ['/detectionWarning/arrivalWarning', '/DetectionWarning/trackInformation']
 watch(
   () => route.path,
   (newVal) => {
