@@ -199,6 +199,7 @@ onMounted(() => {
         @handleClick="handleClick"
         size="large"
         :control="control"
+        :isShwoIndex="true"
       ></Table>
     </div>
     <Pagination

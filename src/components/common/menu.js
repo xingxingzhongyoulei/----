@@ -52,5 +52,17 @@ export const detectionWarningMenu = [
         icon: 'CollectionTag'
       }
     ]
+  },
+  {
+    index: 'zonePlayback',
+    title: '区域回放',
+    icon: 'List',
+    children: [
+      {
+        index: '/DetectionWarning/zonePlayback',
+        title: '船舶区域回放',
+        icon: 'CollectionTag'
+      }
+    ]
   }
 ]

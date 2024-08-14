@@ -10,15 +10,29 @@ const props = defineProps({
     default: [],
     required: false
   },
-  control: { type: Array, default: [], required: true },
+  control: { type: Array, default: [], required: false },
+  // 表格高度  固定列
   height:{
     type: Number,
     default: 530
+  },
+  // 是否显示序号列
+  isShwoIndex:{
+    type: Boolean,
+    default: false
+  },
+  // 是否显示选择列
+  isShowSelect:{
+    type: Boolean,
+    default: false
   }
 })
 const emits = defineEmits(['handleClick'])
 function handleClick(e) {
   emits('handleClick', e)
+}
+function handleSelectionChange(val) {
+  console.log(val)
 }
 </script>
 
@@ -33,9 +47,10 @@ function handleClick(e) {
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(255, 255, 255, 1)"
       cell-class-name="cellName"
+       @selection-change="handleSelectionChange"
     >
-      <el-table-column type="index" width="100" label="序号" align="center" />
-
+      <el-table-column type="index" width="100" label="序号" align="center" v-if="isShwoIndex" />
+      <el-table-column type="selection" width="55" v-if="isShowSelect"/>
       <el-table-column
         v-for="(item, index) in props.column"
         :key="index"
@@ -65,5 +80,8 @@ function handleClick(e) {
   :deep(.el-table__row td){
     height: 30px;
   }
+}
+:deep(.el-table__header){
+  width: 100%;
 }
 </style>

@@ -4,10 +4,7 @@ import * as maptalks from 'maptalks'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { request } from '@/utils/axios'
 import { getRouterPlay } from '@/utils/rouyerPlay'
-import { useRouter } from 'vue-router'
-import TreeTable from '@/components/common/treeTable.vue'
 import MapToolCoorZoom from '@/components/common/Map-tool-coor-Zoom.vue'
-const router = useRouter()
 const map = ref(null)
 
 const props = defineProps({
@@ -187,10 +184,14 @@ onMounted(() => {
   initPolygon()
   initMultiPoint()
   window.$dection = map.value
+  window.$zonePlayback = map.value
 })
 
 onUnmounted(() => {
   if (layerArr.value) {
+    // for (let key in layerArr.value) {
+    //   layerArr.value[key].remove()
+    // }
     layerArr.value = {}
   }
   if (map.value) {
@@ -200,6 +201,10 @@ onUnmounted(() => {
   if (window.$dection) {
     window.$dection.remove()
     window.$dection = null
+  }
+  if (window.$zonePlayback) {
+    window.$zonePlayback.remove()
+    window.$zonePlayback = null
   }
 })
 </script>

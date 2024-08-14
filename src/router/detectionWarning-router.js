@@ -35,6 +35,14 @@ const router = [
         meta: {
           title: '航迹信息'
         }
+      },
+      {
+        path: 'zonePlayback',
+        name: 'zonePlayback',
+        component: () => import('@/views/DetectionWarning/zonePlayback.vue'),
+        meta: {
+          title: '区域回放'
+        }
       }
     ]
   }

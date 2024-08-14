@@ -34,7 +34,9 @@ const route = useRoute()
               <span>{{ item.title }}</span>
             </template>
             <template v-for="(obj, i) in item.children" :key="i">
-              <el-menu-item :index="obj.index">{{ obj.title }}</el-menu-item>
+              <el-menu-item :index="obj.index"
+                ><span class="menu-icon"></span> {{ obj.title }}</el-menu-item
+              >
             </template>
           </el-sub-menu>
         </template>
@@ -61,5 +63,12 @@ const route = useRoute()
 }
 :deep(.el-menu) {
   border: 0;
+}
+.menu-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: rgb(20, 116, 226);
 }
 </style>

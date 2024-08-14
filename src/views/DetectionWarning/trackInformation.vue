@@ -1,9 +1,8 @@
 <script setup>
 import { request } from '@/utils/axios'
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import 'maptalks/dist/maptalks.css'
 import * as maptalks from 'maptalks'
-import { time } from 'echarts'
 const map = ref(null)
 const dectionLayer = ref({})
 const marker = ref({})
@@ -141,6 +140,11 @@ onUnmounted(() => {
   if (map.value) {
     for (let i in dectionLayer.value) {
       dectionLayer.value[i].remove()
+    }
+  }
+  if (timer.value) {
+    for (let k in timer.value) {
+      clearInterval(timer.value[k])
     }
   }
 })
