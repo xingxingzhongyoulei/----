@@ -1,10 +1,13 @@
 <script setup>
 import { request } from '@/utils/axios'
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 import 'maptalks/dist/maptalks.css'
 import * as maptalks from 'maptalks'
+import { time } from 'echarts'
 const map = ref(null)
 const dectionLayer = ref({})
+const marker = ref({})
+
 function getDectionMap() {
   map.value = window.$dection
 }
@@ -14,16 +17,55 @@ async function initMarker() {
 
   const res = await request.get('/jsonData/dection.json')
 
-  res.forEach(async (coor) => {
+  res.forEach(async (coor, index) => {
     const rotate = await request.get('/MultiPointData')
-    initMultiPointGeoJson(coor, rotate.data.rotate)
+    initMultiPointGeoJson(coor, rotate.data.rotate, index)
+    if (index === res.length - 1) {
+      getMarker()
+    }
   })
 }
-const marker = ref({})
-function initMultiPointGeoJson(coor, rotate) {
-  console.log(coor)
+const timer = ref({})
+function getMarker() {
+  dectionLayer.value.lineLayer = new maptalks.VectorLayer('lineLayer').addTo(map.value)
+  for (let k in marker.value) {
+    console.log(k)
 
-  marker.value.dectionMarker = new maptalks.Marker(coor, {
+    const getMarker = marker.value[k].getCoordinates()
+    let coor = 0.05
+    timer.value[k] = setInterval(async () => {
+      //   console.log(dectionLayer.value.lineLayer.getGeometryById(k))
+      if (dectionLayer.value.lineLayer.getGeometryById(k)) {
+        dectionLayer.value.lineLayer.getGeometryById(k).remove()
+      }
+      coor += 0.08
+      marker.value[k].setCoordinates([getMarker.x + coor, getMarker.y + coor])
+      await setMarkerLine(
+        [marker.value[k].getCoordinates().x, marker.value[k].getCoordinates().y],
+        k
+      )
+    }, 1000)
+  }
+}
+async function setMarkerLine(coor, name) {
+  let res = await request.get('generateMockArrays', {
+    data: coor
+  })
+  res.unshift(coor)
+
+  new maptalks.LineString(res, {
+    id: name,
+    symbol: {
+      lineWidth: 3, //线串的宽度
+      lineOpacity: 1, //线串的透明度
+      lineColor: '#0E65C1', //线串的颜色
+      lineJoin: 'bevel'
+    }
+  }).addTo(dectionLayer.value.lineLayer)
+}
+function initMultiPointGeoJson(coor, rotate, name) {
+  marker.value[`dectionMarker${name}`] = new maptalks.Marker(coor, {
+    id: `marker${name}`,
     symbol: {
       markerType: 'triangle',
       markerFill: 'red',
@@ -35,8 +77,7 @@ function initMultiPointGeoJson(coor, rotate) {
       markerRotation: rotate
     }
   })
-  //   创建并添加MultiPoint图层到地图
-  marker.value.dectionMarker.on('click', async (e) => {
+  marker.value[`dectionMarker${name}`].on('click', async (e) => {
     const res = await request.get('/MapAlarmdata')
     marker.value.dectionMarker.setInfoWindow({
       content: `
@@ -82,12 +123,26 @@ function initMultiPointGeoJson(coor, rotate) {
     })
     marker.value.dectionMarker.openInfoWindow(e.coordinate)
   })
-  dectionLayer.value.markerLayer.addGeometry(marker.value.dectionMarker)
+  dectionLayer.value.markerLayer.addGeometry(marker.value[`dectionMarker${name}`])
+  //   console.log(marker.value.dectionMarker.getCoordinates())
+  //   const getDectionMarkerCoor = marker.value.dectionMarker.getCoordinates()
+}
+
+// 关闭弹窗
+window.handleClose = () => {
+  marker.value.dectionMarker.closeInfoWindow()
 }
 
 onMounted(() => {
   getDectionMap()
   initMarker()
+})
+onUnmounted(() => {
+  if (map.value) {
+    for (let i in dectionLayer.value) {
+      dectionLayer.value[i].remove()
+    }
+  }
 })
 </script>
 

@@ -199,3 +199,27 @@ mock(/queryTableData/, 'get', (opt) => {
     total: 1
   }
 })
+// 航迹信息坐标
+mock(/generateMockArrays/, 'get', (opt) => {
+  const givenArray = JSON.parse(opt.body)
+  function generateMockArrays(count) {
+    const mockArrays = []
+
+    for (let i = 0; i < count; i++) {
+      // 生成随机偏差
+      const randomLatDeviation = (Math.random() - 0.5) * 1
+      const randomLngDeviation = (Math.random() - 0.5) * 1
+
+      // 计算新的坐标值
+      const lat = givenArray[0] + randomLatDeviation
+      const lng = givenArray[1] + randomLngDeviation
+
+      // 将新坐标加入数组
+      mockArrays.push([lat, lng])
+    }
+
+    return mockArrays
+  }
+  const mockData = generateMockArrays(2)
+  return mockData
+})
