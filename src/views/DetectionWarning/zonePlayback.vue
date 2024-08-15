@@ -10,6 +10,8 @@ import Table from '@/components/common/table.vue'
 import { request } from '@/utils/axios'
 import { showMessage } from '@/utils/Elements'
 import { formatTime } from '@/utils/formatTime'
+import { getRouterPlay } from '@/utils/rouyerPlay'
+import { trackPlayBack } from '@/utils/trackPlayBack'
 function getZonePlayMap() {
   map.value = window.$zonePlayback
   layerArr.value.drawToolLayer = new maptalks.VectorLayer('drawToolLayer').addTo(map.value)
@@ -140,8 +142,6 @@ const column = [
 ]
 // 表格事件
 function handleClick(type, val) {
-  console.log(type)
-  console.log(val)
   switch (type) {
     case 'selectChange':
       break
@@ -159,10 +159,16 @@ function queryRouteData() {
 const isRoutePlayShow = ref(false)
 // 轨迹回放
 function playBack() {
+  layerArr.value.drawToolLayer.clear()
   isRoutePlayShow.value = true
+  trackPlayBackVal = trackPlayBack(map.value, [122.08666, 34.38125])
 }
 // 关闭轨迹回放
 function closeRoutePlay() {
+  // 消除轨迹回放图层
+  if (map.value.getLayer('tracklayerLine')) {
+    map.value.removeLayer('tracklayerLine')
+  }
   isRoutePlayShow.value = false
 }
 const playSpeed = ref(1)
@@ -191,6 +197,23 @@ const speedSpeed = [
 // 轨迹回放播放速度改变
 function changePlaySpeed(val) {
   console.log(val)
+}
+let trackPlayBackVal = {}
+// 轨迹回放播放
+function play() {
+  console.log('开始播放')
+  console.log(trackPlayBackVal)
+  trackPlayBackVal.play()
+}
+// 轨迹回放暂停
+function stop() {}
+// 轨迹回放播放继续
+function next() {
+  trackPlayBackVal.removeLayer()
+}
+// 轨迹回放播放重放
+function replay() {
+  console.log(123)
 }
 onMounted(() => {
   getZonePlayMap()
@@ -248,17 +271,17 @@ onUnmounted(() => {
       </div>
     </div>
     <div class="playBottom">
-      <div class="playBottom-left">
+      <div class="playBottom-left" @click="play">
         <el-button type="primary">开始</el-button>
       </div>
-      <div class="playBottom-center">
-        <el-button type="primary">暂停</el-button>
+      <div class="playBottom-center" @click="stop">
+        <el-button type="primary" :disabled="trackPlayBackVal == null">暂停</el-button>
       </div>
-      <div class="playBottom-right">
-        <el-button type="primary">继续</el-button>
+      <div class="playBottom-right" @click="next">
+        <el-button type="primary" :disabled="trackPlayBackVal == null">继续</el-button>
       </div>
-      <div class="playBottom-right">
-        <el-button type="primary">重播</el-button>
+      <div class="playBottom-right" @click="replay">
+        <el-button type="primary" :disabled="trackPlayBackVal == null">重播</el-button>
       </div>
     </div>
   </div>
