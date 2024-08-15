@@ -1,7 +1,7 @@
 <script setup>
 import 'maptalks/dist/maptalks.css'
 import * as maptalks from 'maptalks'
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 const map = ref(null)
 const layerArr = ref({})
@@ -10,8 +10,8 @@ import Table from '@/components/common/table.vue'
 import { request } from '@/utils/axios'
 import { showMessage } from '@/utils/Elements'
 import { formatTime } from '@/utils/formatTime'
-import { getRouterPlay } from '@/utils/rouyerPlay'
-import { trackPlayBack } from '@/utils/trackPlayBack'
+
+import TrackPlayBack from '@/utils/trackPlayBack'
 function getZonePlayMap() {
   map.value = window.$zonePlayback
   layerArr.value.drawToolLayer = new maptalks.VectorLayer('drawToolLayer').addTo(map.value)
@@ -157,12 +157,21 @@ function queryRouteData() {
 }
 //是否显示轨迹回放组件
 const isRoutePlayShow = ref(false)
+let trackPlayBackVal = ref(null)
+
 // 轨迹回放
-function playBack() {
+async function playBack() {
   layerArr.value.drawToolLayer.clear()
   isRoutePlayShow.value = true
-  trackPlayBackVal = trackPlayBack(map.value, [122.08666, 34.38125])
 }
+function initTrack() {
+  // 实例化轨迹回放
+  trackPlayBackVal.value = new TrackPlayBack(map.value, [122.08666, 34.38125])
+  trackPlayBackVal.value.clearLayer()
+  console.log(trackPlayBackVal.value)
+  trackPlayBackVal.value.lineOpt()
+}
+
 // 关闭轨迹回放
 function closeRoutePlay() {
   // 消除轨迹回放图层
@@ -171,53 +180,72 @@ function closeRoutePlay() {
   }
   isRoutePlayShow.value = false
 }
-const playSpeed = ref(1)
+const playSpeed = ref(20)
 const speedSpeed = [
   {
     label: '原速',
-    value: 1
-  },
-  {
-    label: '5倍速',
-    value: 5
-  },
-  {
-    label: '10倍速',
-    value: 10
-  },
-  {
-    label: '20倍速',
     value: 20
   },
   {
+    label: '5倍速',
+    value: 30
+  },
+  {
+    label: '10倍速',
+    value: 40
+  },
+  {
+    label: '20倍速',
+    value: 60
+  },
+  {
     label: '50倍速',
-    value: 50
+    value: 120
   }
 ]
 // 轨迹回放播放速度改变
 function changePlaySpeed(val) {
-  console.log(val)
+  console.log(trackPlayBackVal.value.minTime())
+
+  trackPlayBackVal.value.setSpeed(val)
 }
-let trackPlayBackVal = {}
 // 轨迹回放播放
 function play() {
-  console.log('开始播放')
-  console.log(trackPlayBackVal)
-  trackPlayBackVal.play()
+  console.log(trackPlayBackVal.value.returnTime())
+
+  trackPlayBackVal.value.startPlay()
 }
 // 轨迹回放暂停
-function stop() {}
+function stop() {
+  trackPlayBackVal.value.pause()
+}
 // 轨迹回放播放继续
 function next() {
-  trackPlayBackVal.removeLayer()
+  trackPlayBackVal.value.startPlay()
 }
 // 轨迹回放播放重放
 function replay() {
-  console.log(123)
+  trackPlayBackVal.value.replay()
+}
+const slideTimeValue = ref(0)
+// slide改变时触发
+function changeTime() {
+  trackPlayBackVal.value.setTime()
+}
+const slidetime = ref({
+  max: 100,
+  min: 0
+})
+function getTime() {
+  slidetime.value = {
+    max: trackPlayBackVal.value.maxTime,
+    min: trackPlayBackVal.value.minTime
+  }
 }
 onMounted(() => {
   getZonePlayMap()
   addDrawTool()
+  initTrack()
 })
 // 页面销毁时，将该页面所有添加的图层销毁掉
 onUnmounted(() => {
@@ -237,6 +265,16 @@ onUnmounted(() => {
       <div class="header-right" @click="closeRoutePlay">
         <el-icon><Close /></el-icon>
       </div>
+    </div>
+    <div class="play-time">
+      <div class="contanin-item-left">{{ formModel.startTime || '开始时间' }}</div>
+      <el-slider
+        v-model="slideTimeValue"
+        @input="changeTime"
+        :min="slidetime.min || 0"
+        :max="slidetime.max || 100"
+      />
+      <div class="contanin-item-right">{{ formModel.endTime || '结束时间' }}</div>
     </div>
     <div class="contain">
       <div class="contanin-item">
@@ -423,13 +461,25 @@ onUnmounted(() => {
   position: absolute;
   top: 150px;
   right: 40px;
-  width: 350px;
+  width: 420px;
   padding: 15px;
   background-color: white;
   .header {
     display: flex;
     justify-content: space-between;
     font-size: 20px;
+  }
+  .play-time {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    :deep(.el-slider) {
+      margin: 0 10px;
+    }
+    .contanin-item-left,
+    .contanin-item-right {
+      min-width: 80px;
+    }
   }
   .playBottom {
     display: flex;

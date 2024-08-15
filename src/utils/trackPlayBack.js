@@ -1,91 +1,148 @@
 import { request } from '@/utils/axios'
 import * as maptalks from 'maptalks'
 import { RoutePlayer, formatRouteData } from 'maptalks.routeplayer'
-export async function trackPlayBack(map, alarmCoor) {
-  let res = await request('MapRouterPlay')
-  res = res.list
-    .map((item) => {
+export default class TrackPlayBack {
+  constructor(map, alarmCoor) {
+    this.map = map
+    this.alarmCoor = alarmCoor
+    this.player = null
+    this.result = null
+    this.tracklayerLine = null
+    this.maxTime = null
+    this.minTime = null
+    this._getRoutedata()
+      .then(() => {
+        this._getTime()
+      })
+      .finally(() => {
+        this._getTime()
+      })
+  }
+  //   获取轨迹数据
+  async _getRoutedata() {
+    let res = await request('MapRouterPlay')
+    res = res.list
+      .map((item) => {
+        return {
+          coordinate: [item.longitude, item.latitude],
+          time: new Date(item.gpsTime).getTime()
+        }
+      })
+      .sort((a, b) => {
+        return a.time - b.time
+      })
+    // 轨迹回放使用
+    this.result = res.map((item) => {
       return {
-        coordinate: [item.longitude, item.latitude],
-        time: new Date(item.gpsTime).getTime()
+        ...item,
+        time: item.time - res[0].time
       }
     })
-    .sort((a, b) => {
-      return a.time - b.time
+
+    this.result.push({
+      coordinate: this.alarmCoor,
+      time: 621000
     })
-  // 轨迹回放使用
-  let result = res.map((item) => {
-    return {
-      ...item,
-      time: item.time - res[0].time
+
+    const data = formatRouteData(this.result, {})
+
+    this.player = new RoutePlayer(data, {
+      speed: 20,
+      debug: false
+    })
+  }
+
+  lineOpt() {
+    // 线条坐标配置
+    const lineResult = this.result.map((item) => {
+      return item.coordinate
+    })
+
+    // 思路：
+    // 1.准备一条线
+    // 2.准备插件touterplay
+    // 3.准备一个marker，动态设置marker的坐标  点沿线动画
+    this.tracklayerLine = new maptalks.VectorLayer('tracklayerLine', {
+      hitDetect: true,
+      // 启用几何体事件
+      geometryEvents: true,
+      forceRenderOnMoving: true,
+      forceRenderOnZooming: true,
+      forceRenderOnRotating: true
+    }).addTo(this.map)
+    new maptalks.LineString(lineResult, {
+      symbol: {
+        lineWidth: 4, //线串的宽度
+        lineOpacity: 1, //线串的透明度
+        lineColor: '#0E65C1', //线串的颜色
+        lineDasharray: [10, 10],
+        lineJoin: 'bevel'
+      }
+    }).addTo(this.tracklayerLine)
+    // 点
+    let point = new maptalks.Marker(lineResult[0], {
+      symbol: {
+        markerType: 'ellipse',
+        markerFill: 'rgb(185,196,50)',
+        markerFillOpacity: 1,
+        markerLineColor: '#34495e',
+        markerLineWidth: 3,
+        markerLineOpacity: 1,
+        markerLineDasharray: [],
+        markerWidth: 18,
+        markerHeight: 18,
+        markerDx: 0,
+        markerDy: 0,
+        markerOpacity: 1
+      }
+    }).addTo(this.tracklayerLine)
+    this.player.on('playstart playing playend', (e) => {
+      // console.log(e.coordinate)
+
+      const { coordinate } = e
+      point.setCoordinates([coordinate[0], coordinate[1]])
+    })
+  }
+  removeLayer() {
+    if (this.map.getLayer('tracklayerLine')) {
+      this.map.removeLayer('tracklayerLine')
     }
-  })
-  result.push({
-    coordinate: alarmCoor,
-    time: 621000
-  })
-  const data = formatRouteData(result, {})
-
-  const player = new RoutePlayer(data, {
-    speed: 40,
-    debug: false
-  })
-  //   player.play()
-  //   线条坐标配置
-
-  const lineResult = result.map((item) => {
-    return item.coordinate
-  })
-
-  // 思路：
-  // 1.准备一条线
-  // 2.准备插件touterplay
-  // 3.准备一个marker，动态设置marker的坐标  点沿线动画
-  const tracklayerLine = new maptalks.VectorLayer('tracklayerLine', {
-    hitDetect: true,
-    // 启用几何体事件
-    geometryEvents: true,
-    forceRenderOnMoving: true,
-    forceRenderOnZooming: true,
-    forceRenderOnRotating: true
-  }).addTo(map)
-  const line = new maptalks.LineString(lineResult, {
-    symbol: {
-      lineWidth: 4, //线串的宽度
-      lineOpacity: 1, //线串的透明度
-      lineColor: '#0E65C1', //线串的颜色
-      lineDasharray: [10, 10],
-      lineJoin: 'bevel'
+  }
+  clearLayer() {
+    if (this.map.getLayer('tracklayerLine')) {
+      this.map.getLayer('tracklayerLine').clear()
     }
-  }).addTo(tracklayerLine)
+  }
 
-  // 点
-  const point = new maptalks.Marker(lineResult[0], {
-    symbol: {
-      markerType: 'ellipse',
-      markerFill: 'rgb(185,196,50)',
-      markerFillOpacity: 1,
-      markerLineColor: '#34495e',
-      markerLineWidth: 3,
-      markerLineOpacity: 1,
-      markerLineDasharray: [],
-      markerWidth: 18,
-      markerHeight: 18,
-      markerDx: 0,
-      markerDy: 0,
-      markerOpacity: 1
+  //   播放
+  startPlay() {
+    this.player.play()
+  }
+  // 暂停
+  pause() {
+    this.player.pause()
+  }
+  // 重新播放
+  replay() {
+    this.player.reset()
+    this.player.play()
+  }
+  setSpeed(val) {
+    this.player.setSpeed(val)
+  }
+  setTime() {
+    console.log('设置事件')
+
+    // console.log(this.player.getStartTime())
+  }
+  _getTime() {
+    // console.log(this.player.getStartTime())
+    if (this.player !== null) {
+      this.minTime = this.player.getStartTime()
+      this.maxTime = this.player.getEndTime()
     }
-  }).addTo(tracklayerLine)
-
-  // if (map.getLayer('tracklayerLine')) {
-  //   map.removeLayer('tracklayerLine')
-  // }
-
-  // 2.5监听player的播放 暂停 结束 事件
-  player.on('playstart playing playend pause', (e) => {
-    const { coordinate } = e
-    point.setCoordinates([coordinate[0], coordinate[1]])
-  })
-
-  return player
+  }
+  returnTime() {
+    return this.player.getStartTime()
+  }
 }
