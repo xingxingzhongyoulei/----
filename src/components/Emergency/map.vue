@@ -235,6 +235,8 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
       break
     case 'back':
       getRouterPlay(map.value, multipointAlarm.value, [coordinateX, coordinateY])
+      multipointAlarm.openInfoWindow([coordinateX, coordinateY])
+
       break
 
     default:

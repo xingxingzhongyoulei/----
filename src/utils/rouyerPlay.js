@@ -1,9 +1,8 @@
 import { request } from '@/utils/axios'
-// import maptalks from 'maptalks'
 import * as maptalks from 'maptalks'
 
 import { RoutePlayer, formatRouteData } from 'maptalks.routeplayer'
-export async function getRouterPlay(map, multipointAlarm, alarmCoor) {
+export async function getRouterPlay(map, alarmCoor) {
   let res = await request('MapRouterPlay')
   res = res.list
     .map((item) => {
@@ -88,7 +87,5 @@ export async function getRouterPlay(map, multipointAlarm, alarmCoor) {
     if (map.getLayer('layerLine')) {
       map.removeLayer('layerLine')
     }
-
-    multipointAlarm.openInfoWindow(alarmCoor)
   })
 }

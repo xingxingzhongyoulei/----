@@ -32,7 +32,8 @@ function handleClick(e) {
   emits('handleClick', e)
 }
 function handleSelectionChange(val) {
-  console.log(val)
+  emits('handleClick','selectChange', val)
+
 }
 </script>
 

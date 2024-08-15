@@ -223,3 +223,41 @@ mock(/generateMockArrays/, 'get', (opt) => {
   const mockData = generateMockArrays(2)
   return mockData
 })
+
+mock(/zoneshipInfo/, 'get', (opt) => {
+  const data = JSON.parse(opt.body)
+  const value = []
+  const shipLengthS = ['张超', '李四', '净水', '王五', '张留', '王顺', '张存', '李四', '张武']
+  const shipNames = [
+    'A1105',
+    'A1106',
+    'A1107',
+    'A1108',
+    'A1109',
+    'A1110',
+    'A1111',
+    'A1112',
+    'A1113'
+  ]
+  const phones = [
+    '12345678901',
+    '12345678902',
+    '12345678903',
+    '12345678904',
+    '12345678905',
+    '12345678906',
+    '12345678907',
+    '12345678908',
+    '12345678909'
+  ]
+  for (let i = 0; i < data.markerContainNum; i++) {
+    let obj = {
+      shipName: shipNames[i],
+      shipLength: shipLengthS[i],
+      cmdType: data.cmdType,
+      phone: phones[i]
+    }
+    value.push(obj)
+  }
+  return value
+})
