@@ -7,16 +7,10 @@ export default class TrackPlayBack {
     this.alarmCoor = alarmCoor
     this.player = null
     this.result = null
-    this.tracklayerLine = null
+    this.tracklayerLine = 0
     this.maxTime = null
     this.minTime = null
     this._getRoutedata()
-      .then(() => {
-        this._getTime()
-      })
-      .finally(() => {
-        this._getTime()
-      })
   }
   //   获取轨迹数据
   async _getRoutedata() {
@@ -50,6 +44,9 @@ export default class TrackPlayBack {
       speed: 20,
       debug: false
     })
+    this.minTime = this.player.getStartTime()
+    this.maxTime = this.player.getEndTime()
+    // this.lineOpt()
   }
 
   lineOpt() {
@@ -76,7 +73,8 @@ export default class TrackPlayBack {
         lineOpacity: 1, //线串的透明度
         lineColor: '#0E65C1', //线串的颜色
         lineDasharray: [10, 10],
-        lineJoin: 'bevel'
+        lineJoin: 'miter-revert',
+        lineCap: 'round'
       }
     }).addTo(this.tracklayerLine)
     // 点
@@ -130,19 +128,10 @@ export default class TrackPlayBack {
   setSpeed(val) {
     this.player.setSpeed(val)
   }
-  setTime() {
-    console.log('设置事件')
-
-    // console.log(this.player.getStartTime())
+  setTime(val) {
+    this.player.setTime(val)
   }
-  _getTime() {
-    // console.log(this.player.getStartTime())
-    if (this.player !== null) {
-      this.minTime = this.player.getStartTime()
-      this.maxTime = this.player.getEndTime()
-    }
-  }
-  returnTime() {
-    return this.player.getStartTime()
+  getTime() {
+    return this.player.getUnitTime()
   }
 }

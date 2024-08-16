@@ -162,16 +162,25 @@ let trackPlayBackVal = ref(null)
 // 轨迹回放
 async function playBack() {
   layerArr.value.drawToolLayer.clear()
+  // 实例化轨迹回放
+  trackPlayBackVal.value.removeLayer()
+  trackPlayBackVal.value.clearLayer()
+  trackPlayBackVal.value.lineOpt()
+  slidetime.value = {
+    max: trackPlayBackVal.value.maxTime,
+    min: trackPlayBackVal.value.minTime
+  }
+  console.log(slidetime.value.max)
+  trackPlayBackVal.value.player.on('playstart playing playend', (e) => {
+    // console.log(e.target.time)
+    slideTimeValue.value = e.target.time
+  })
+
   isRoutePlayShow.value = true
 }
-function initTrack() {
-  // 实例化轨迹回放
+function initTrackPlayBack() {
   trackPlayBackVal.value = new TrackPlayBack(map.value, [122.08666, 34.38125])
-  trackPlayBackVal.value.clearLayer()
-  console.log(trackPlayBackVal.value)
-  trackPlayBackVal.value.lineOpt()
 }
-
 // 关闭轨迹回放
 function closeRoutePlay() {
   // 消除轨迹回放图层
@@ -205,14 +214,12 @@ const speedSpeed = [
 ]
 // 轨迹回放播放速度改变
 function changePlaySpeed(val) {
-  console.log(trackPlayBackVal.value.minTime())
-
   trackPlayBackVal.value.setSpeed(val)
 }
-// 轨迹回放播放
-function play() {
-  console.log(trackPlayBackVal.value.returnTime())
+const slideTimeValue = ref(0)
 
+// 轨迹回放播放----------start
+function play() {
   trackPlayBackVal.value.startPlay()
 }
 // 轨迹回放暂停
@@ -227,25 +234,29 @@ function next() {
 function replay() {
   trackPlayBackVal.value.replay()
 }
-const slideTimeValue = ref(0)
+
 // slide改变时触发
-function changeTime() {
-  trackPlayBackVal.value.setTime()
+let changeTimer = null
+function changeTime(val) {
+  trackPlayBackVal.value.pause()
+  slideTimeValue.value = val
+  trackPlayBackVal.value.setTime(val)
+  if (changeTimer) {
+    clearTimeout(changeTimer)
+  }
+  changeTimer = setTimeout(() => {
+    trackPlayBackVal.value.startPlay()
+  }, 1000)
 }
 const slidetime = ref({
   max: 100,
   min: 0
 })
-function getTime() {
-  slidetime.value = {
-    max: trackPlayBackVal.value.maxTime,
-    min: trackPlayBackVal.value.minTime
-  }
-}
+
 onMounted(() => {
   getZonePlayMap()
   addDrawTool()
-  initTrack()
+  initTrackPlayBack()
 })
 // 页面销毁时，将该页面所有添加的图层销毁掉
 onUnmounted(() => {
@@ -262,19 +273,20 @@ onUnmounted(() => {
   <div class="playBack" v-if="isRoutePlayShow">
     <div class="header">
       <div class="header-left">轨迹回放</div>
-      <div class="header-right" @click="closeRoutePlay">
+      <div class="header-right" @click="closeRoutePlay" style="cursor: pointer">
         <el-icon><Close /></el-icon>
       </div>
     </div>
     <div class="play-time">
-      <div class="contanin-item-left">{{ formModel.startTime || '开始时间' }}</div>
+      <div class="contanin-item-left">{{ formatTime(formModel.startTime) || '开始时间' }}</div>
       <el-slider
         v-model="slideTimeValue"
         @input="changeTime"
-        :min="slidetime.min || 0"
-        :max="slidetime.max || 100"
+        :min="slidetime.min"
+        :max="slidetime.max"
+        :show-tooltip="false"
       />
-      <div class="contanin-item-right">{{ formModel.endTime || '结束时间' }}</div>
+      <div class="contanin-item-right">{{ formatTime(formModel.endTime) || '结束时间' }}</div>
     </div>
     <div class="contain">
       <div class="contanin-item">
@@ -283,7 +295,7 @@ onUnmounted(() => {
           v-model="playSpeed"
           placeholder="原速"
           size="large"
-          style="width: 120px"
+          style="width: 200px"
           @change="changePlaySpeed"
         >
           <el-option
@@ -298,14 +310,14 @@ onUnmounted(() => {
         起始时间：
         <el-input
           :value="formatTime(formModel.startTime)"
-          style="width: auto"
+          style="width: 250px"
           disabled
           format="YYYY/MM/DD hh:mm:ss"
         />
       </div>
       <div class="contanin-item">
         结束时间：
-        <el-input :value="formatTime(formModel.endTime)" style="width: auto" disabled />
+        <el-input :value="formatTime(formModel.endTime)" style="width: 250px" disabled />
       </div>
     </div>
     <div class="playBottom">
@@ -461,7 +473,7 @@ onUnmounted(() => {
   position: absolute;
   top: 150px;
   right: 40px;
-  width: 420px;
+  width: 500px;
   padding: 15px;
   background-color: white;
   .header {
@@ -473,12 +485,13 @@ onUnmounted(() => {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 20px;
     :deep(.el-slider) {
       margin: 0 10px;
     }
     .contanin-item-left,
     .contanin-item-right {
-      min-width: 80px;
+      min-width: 120px;
     }
   }
   .playBottom {
