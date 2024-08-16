@@ -202,17 +202,26 @@ mock(/queryTableData/, 'get', (opt) => {
 // 航迹信息坐标
 mock(/generateMockArrays/, 'get', (opt) => {
   const givenArray = JSON.parse(opt.body)
+
   function generateMockArrays(count) {
     const mockArrays = []
 
-    for (let i = 0; i < count; i++) {
-      // 生成随机偏差
-      const randomLatDeviation = (Math.random() - 0.5) * 1
-      const randomLngDeviation = (Math.random() - 0.5) * 1
+    // for (let i = 0; i < count; i++) {
+    //   // 生成随机偏差
+    //   const randomLatDeviation = (Math.random() - 0.5) * 1
+    //   const randomLngDeviation = (Math.random() - 0.5) * 1
 
+    //   // 计算新的坐标值
+    //   const lat = givenArray[0] + randomLatDeviation
+    //   const lng = givenArray[1] + randomLngDeviation
+
+    //   // 将新坐标加入数组
+    //   mockArrays.push([lat, lng])givenArray
+    // }
+    for (let i = 0; i < 2; i++) {
       // 计算新的坐标值
-      const lat = givenArray[0] + randomLatDeviation
-      const lng = givenArray[1] + randomLngDeviation
+      const lat = givenArray[0] - (0.1 * i + 1)
+      const lng = givenArray[1] - (0.1 * i + 1)
 
       // 将新坐标加入数组
       mockArrays.push([lat, lng])
@@ -260,4 +269,58 @@ mock(/zoneshipInfo/, 'get', (opt) => {
     value.push(obj)
   }
   return value
+})
+
+// 船舶信息
+mock(/shipInfoAnnotation/, 'get', {
+  code: 0,
+  'data|10': [
+    {
+      'shipName|1': [
+        '@string("upper", 2)@integer(1000, 9999)',
+        '@string("upper", 1)@integer(10000, 99999)'
+      ],
+      shipLength: '@cname',
+      shipType: /^(乡镇船|在册船|国库船)$/,
+      isOnline: /^(在线|离线)$/,
+      phone: /^(136|159|188|153|177)\d{8}$/,
+      portName: /^(电建渔港01|电建渔港02|电建渔港03|电建渔港04)$/,
+      cmdType: /^(北斗|AIS|雷达)$/,
+      startTime: '@datetime'
+    }
+  ],
+  msg: 'success'
+})
+
+// 船舶类型标注
+mock(/shipAnnotation/, 'get', {
+  code: 0,
+  'data|10': [
+    {
+      'shipName|1': [
+        '@string("upper", 2)@integer(1000, 9999)',
+        '@string("upper", 1)@integer(10000, 99999)'
+      ],
+      shipLength: '@cname',
+      portName: /^(电建渔港01|电建渔港02|电建渔港03|电建渔港04)$/,
+      startTime: '@datetime',
+      cmdType: /^(北斗|AIS|雷达)$/,
+      phone: /^(136|159|188|153|177)\d{8}$/,
+      isOnline: /^(在线|离线)$/
+    }
+  ],
+  msg: 'success'
+})
+
+mock(/getTargetFilter/, 'get', {
+  code: 0,
+  'data|50': [
+    {
+      coordinate: ['@float(120.0000, 124.0000, 4, 4)', '@float(34.0000, 37.0000, 4, 4)'],
+      targetTypes: /^(雷达|AIS|北斗)$/,
+      speed: /^(0|1)$/,
+      trackingDuration: '@integer(0, 24)',
+      targetSize: '@integer(0, 400)'
+    }
+  ]
 })

@@ -43,6 +43,22 @@ const router = [
         meta: {
           title: '区域回放'
         }
+      },
+      {
+        path: 'classAnnotation',
+        name: 'classAnnotation',
+        component: () => import('@/views/DetectionWarning/classAnnotation.vue'),
+        meta: {
+          title: '船舶分类标注'
+        }
+      },
+      {
+        path: 'targetFilter',
+        name: 'targetFilter',
+        component: () => import('@/views/DetectionWarning/targetFilter.vue'),
+        meta: {
+          title: '船舶分类标注'
+        }
       }
     ]
   }

@@ -64,5 +64,29 @@ export const detectionWarningMenu = [
         icon: 'CollectionTag'
       }
     ]
+  },
+  {
+    index: 'classAnnotation',
+    title: '船舶分类标注',
+    icon: 'List',
+    children: [
+      {
+        index: '/DetectionWarning/classAnnotation',
+        title: '船舶分类标注',
+        icon: 'CollectionTag'
+      }
+    ]
+  },
+  {
+    index: 'targetFilter',
+    title: '目标筛选',
+    icon: 'List',
+    children: [
+      {
+        index: '/DetectionWarning/targetFilter',
+        title: '目标筛选',
+        icon: 'CollectionTag'
+      }
+    ]
   }
 ]

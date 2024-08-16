@@ -186,6 +186,7 @@ onMounted(() => {
   initMultiPoint()
   window.$dection = map.value
   window.$zonePlayback = map.value
+  window.$filterMap = map.value
 })
 
 onUnmounted(() => {
@@ -206,6 +207,10 @@ onUnmounted(() => {
   if (window.$zonePlayback) {
     window.$zonePlayback.remove()
     window.$zonePlayback = null
+  }
+  if (window.$filterMap) {
+    window.$filterMap.remove()
+    window.$filterMap = null
   }
 })
 </script>

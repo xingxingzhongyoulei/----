@@ -28,8 +28,8 @@ const props = defineProps({
   }
 })
 const emits = defineEmits(['handleClick'])
-function handleClick(e) {
-  emits('handleClick', e)
+function handleClick(type,e) {
+  emits('handleClick',type,e)
 }
 function handleSelectionChange(val) {
   emits('handleClick','selectChange', val)
@@ -62,7 +62,7 @@ function handleSelectionChange(val) {
       <el-table-column fixed="right" label="操作" v-if="props.control.length" >
         <template #default="scope">
           <template v-for="(item, index) in props.control" :key="index"">
-            <el-button :type="item.type||primary" :size="item.size||middle" @click="handleClick(scope.row)"> {{item.label}} </el-button>
+            <el-button :type="item.type||primary" :size="item.size||middle" @click="handleClick(item.label,scope.row)"> {{item.label}} </el-button>
           </template>
         </template>
       </el-table-column>

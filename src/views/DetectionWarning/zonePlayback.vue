@@ -266,6 +266,7 @@ onUnmounted(() => {
     }
     layerArr.value = {}
   }
+  trackPlayBackVal.value.removeLayer()
 })
 </script>
 

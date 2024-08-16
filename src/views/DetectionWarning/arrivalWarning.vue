@@ -110,7 +110,7 @@ const drawerData = ref({
   startTime: ''
 })
 //表格点击事件
-function handleClick(row) {
+function handleClick(type, row) {
   drawerData.value = row
   drawerRef?.value.showDrawer()
 }
