@@ -1,5 +1,5 @@
 import { request } from '@/utils/axios'
-import { TypeComponents } from 'element-plus/es/utils'
+
 import * as maptalks from 'maptalks'
 export default class targetFilter {
   constructor(map) {
