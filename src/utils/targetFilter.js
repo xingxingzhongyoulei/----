@@ -1,4 +1,5 @@
 import { request } from '@/utils/axios'
+import { TypeComponents } from 'element-plus/es/utils'
 import * as maptalks from 'maptalks'
 export default class targetFilter {
   constructor(map) {
@@ -46,28 +47,27 @@ export default class targetFilter {
     this.initMarker(data)
   }
   filterMarker(type, val) {
-    if (Array.isArray(val) && val.length === 0) {
-      console.log(type)
-      return this.addToMarker(this.filterData)
-    }
+    // 每回多选发生改变，执行清除图层所有图形
     this.clearMarker()
+    console.log(type)
+    console.log(val)
 
-    switch (type) {
-      case 'type':
-        this.typeFilter(val)
-        break
-      case 'speed':
-        this.speedFilter(val)
-        break
-      case 'dur':
-        this.durFilter(val)
-        break
-      case 'size':
-        this.sizeFilter(val)
-        break
-      default:
-        break
-    }
+    // switch (type) {
+    //   case 'type':
+    //     this.typeFilter(val)
+    //     break
+    //   case 'speed':
+    //     this.speedFilter(val)
+    //     break
+    //   case 'dur':
+    //     this.durFilter(val)
+    //     break
+    //   case 'size':
+    //     this.sizeFilter(val)
+    //     break
+    //   default:
+    //     break
+    // }
   }
   //   类型筛选
   typeFilter(val) {
