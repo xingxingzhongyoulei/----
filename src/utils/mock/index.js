@@ -314,13 +314,13 @@ mock(/shipAnnotation/, 'get', {
 
 mock(/getTargetFilter/, 'get', {
   code: 0,
-  'data|50': [
+  'data|30': [
     {
       coordinate: ['@float(120.0000, 124.0000, 4, 4)', '@float(34.0000, 37.0000, 4, 4)'],
-      targetTypes: /^(雷达|AIS|北斗)$/,
+      type: /^(雷达|AIS|北斗)$/,
       speed: /^(0|1)$/,
-      trackingDuration: '@integer(0, 24)',
-      targetSize: '@integer(0, 400)'
+      dur: '@integer(0, 24)',
+      size: '@integer(0, 400)'
     }
   ]
 })

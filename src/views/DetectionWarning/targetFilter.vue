@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import targetFilter from '@/utils/targetFilter'
 const router = useRouter()
@@ -93,7 +93,7 @@ const targetSizes = [
 ]
 const targetSize = ref([])
 // 目标类型筛选的值发生变化的事件
-// =======================================================================
+// ==================================================================
 function handleChange(val) {
   targetFilterVal.filterMarker('type', val)
 }
@@ -111,9 +111,12 @@ function handleChangeDuration(val) {
 }
 // 目标大小筛选
 function handleChangeSize(val) {
-  targetFilterVal.filterMarker('size', val)
+  let data = [...new Set(val)].sort((a, b) => {
+    return a - b
+  })
+  targetFilterVal.filterMarker('size', data)
 }
-// ==========================================================================
+// ================================================================
 function handleReset() {
   targetType.value = []
   speed.value = []
@@ -131,6 +134,9 @@ function handleClear() {
 onMounted(() => {
   getFilterMap()
   initTargetFilter()
+})
+onUnmounted(() => {
+  targetFilterVal.removeLayer()
 })
 </script>
 
