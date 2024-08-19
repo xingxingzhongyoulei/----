@@ -64,31 +64,31 @@ const trackingDuration = ref([])
 const targetSizes = [
   {
     label: '0-40',
-    value: [0, 40]
+    value: 40
   },
   {
     label: '41-80',
-    value: [41, 80]
+    value: 80
   },
   {
     label: '81-120',
-    value: [81, 120]
+    value: 120
   },
   {
     label: '121-160',
-    value: [121, 160]
+    value: 160
   },
   {
-    label: '161-240',
-    value: [161, 240]
+    label: '161-200',
+    value: 200
   },
   {
-    label: '241-320',
-    value: [241, 320]
+    label: '201-240',
+    value: 240
   },
   {
-    label: '>320',
-    value: [321]
+    label: '>240',
+    value: 241
   }
 ]
 const targetSize = ref([])
@@ -107,7 +107,10 @@ function handleChangeSpeed(val) {
 }
 // 跟踪时长筛选
 function handleChangeDuration(val) {
-  targetFilterVal.filterMarker('dur', val)
+  let data = [...new Set(val)].sort((a, b) => {
+    return a - b
+  })
+  targetFilterVal.filterMarker('dur', data)
 }
 // 目标大小筛选
 function handleChangeSize(val) {

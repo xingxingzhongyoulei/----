@@ -324,3 +324,11 @@ mock(/getTargetFilter/, 'get', {
     }
   ]
 })
+
+mock(/routeBackMarker/, 'get', {
+  'data|20': [
+    {
+      coordinate: ['@float(125.4000, 126.0000, 4, 4)', '@float(34.0000, 36.0000, 4, 4)']
+    }
+  ]
+})

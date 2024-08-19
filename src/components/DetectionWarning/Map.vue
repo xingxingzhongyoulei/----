@@ -187,6 +187,7 @@ onMounted(() => {
   window.$dection = map.value
   window.$zonePlayback = map.value
   window.$filterMap = map.value
+  window.$warningMap = map.value
 })
 
 onUnmounted(() => {

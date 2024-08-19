@@ -88,5 +88,29 @@ export const detectionWarningMenu = [
         icon: 'CollectionTag'
       }
     ]
+  },
+  {
+    index: 'violationWarning',
+    title: '违规出港预警',
+    icon: 'List',
+    children: [
+      {
+        index: '/DetectionWarning/violationWarning',
+        title: '违规出港预警',
+        icon: 'CollectionTag'
+      }
+    ]
+  },
+  {
+    index: 'analyWarning',
+    title: '告警统计分析',
+    icon: 'List',
+    children: [
+      {
+        index: '/DetectionWarning/analyWarning',
+        title: '告警统计分析',
+        icon: 'CollectionTag'
+      }
+    ]
   }
 ]

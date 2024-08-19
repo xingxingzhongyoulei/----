@@ -57,7 +57,23 @@ const router = [
         name: 'targetFilter',
         component: () => import('@/views/DetectionWarning/targetFilter.vue'),
         meta: {
-          title: '船舶分类标注'
+          title: '目标筛选'
+        }
+      },
+      {
+        path: 'violationWarning',
+        name: 'violationWarning',
+        component: () => import('@/views/DetectionWarning/violationWarning.vue'),
+        meta: {
+          title: '违规出港预警'
+        }
+      },
+      {
+        path: 'analyWarning',
+        name: 'analyWarning',
+        component: () => import('@/views/DetectionWarning/analyWarning.vue'),
+        meta: {
+          title: '告警统计分析'
         }
       }
     ]
