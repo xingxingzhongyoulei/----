@@ -55,19 +55,37 @@ function initFoldChart() {
         name: '设备异常',
         type: 'line',
         stack: 'Total',
-        data: [820, 932, 901, 934, 1290, 1330, 1320]
+        data: [820, 932, 901, 934, 1290, 1330, 1220]
       },
       {
         name: '非本地渔船',
         type: 'line',
         stack: 'Total',
-        data: [800, 55, 901, 700, 100, 600, 1320]
+        data: [800, 55, 901, 700, 100, 600, 320]
       },
       {
         name: '一号两船',
         type: 'line',
         stack: 'Total',
         data: [300, 505, 21, 700, 100, 60, 120]
+      },
+      {
+        name: '越界捕捞',
+        type: 'line',
+        stack: 'Total',
+        data: [350, 305, 210, 750, 100, 360, 620]
+      },
+      {
+        name: '休渔期出海',
+        type: 'line',
+        stack: 'Total',
+        data: [900, 105, 231, 780, 160, 260, 10]
+      },
+      {
+        name: '未报备出港',
+        type: 'line',
+        stack: 'Total',
+        data: [600, 535, 521, 900, 190, 560, 190]
       }
     ]
   })
@@ -82,8 +100,8 @@ function initPieChart() {
       trigger: 'item'
     },
     legend: {
-      orient: 'vertical',
-      left: 'right'
+      top: '5%',
+      left: 'center'
     },
     series: [
       {
@@ -97,7 +115,10 @@ function initPieChart() {
           { value: 484, name: '离线' },
           { value: 300, name: '设备异常' },
           { value: 90, name: '非本地渔船' },
-          { value: 60, name: '一号两船' }
+          { value: 60, name: '一号两船' },
+          { value: 80, name: '越界捕捞' },
+          { value: 120, name: '休渔期出海' },
+          { value: 360, name: '未报备出港' }
         ],
         emphasis: {
           itemStyle: {

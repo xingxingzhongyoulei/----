@@ -3,10 +3,11 @@ import 'maptalks/dist/maptalks.css'
 import * as maptalks from 'maptalks'
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import { request } from '@/utils/axios'
-import TrackPlayBack from '@/utils/trackPlayBack'
+import RoutePlay from '@/components/common/routePlay'
 const map = ref(null)
 const warningLayer = ref(null)
 const playback = ref(null)
+const routePlay = ref(null)
 function getWarningMap() {
   map.value = window.$warningMap
   warningLayer.value = new maptalks.VectorLayer('warningLayer').addTo(map.value)
@@ -22,17 +23,17 @@ async function initPolygon() {
     dragShadow: false, // display a shadow during dragging
     drawOnAxis: null, // force dragging stick on a axis, can be: x, y
     symbol: {
-      lineColor: '#34495e',
-      lineWidth: 2,
-      polygonFill: 'rgb(135,196,240)',
-      polygonOpacity: 0.3
+      lineColor: '#26FA08',
+      lineWidth: 3,
+      polygonFill: 'green',
+      polygonOpacity: 0.1
     }
   }).addTo(warningLayer.value)
 
-  let textMarker = ['休', '渔', '期', '电', '子', '围', '栏']
-  const coorArr = [124.7, 35.155]
+  let textMarker = ['休', '渔', '期']
+  const coorArr = [124.7, 35.055]
   textMarker.forEach((item, index) => {
-    new maptalks.Marker([coorArr[0], coorArr[1] - 0.4 * index], {
+    new maptalks.Marker([coorArr[0], coorArr[1] - 0.8 * index], {
       properties: {
         name: item
       },
@@ -41,13 +42,12 @@ async function initPolygon() {
         textName: '{name}', //value from name in geometry's properties
         textWeight: 'normal', //'bold', 'bolder'
         textStyle: 'normal', //'italic', 'oblique'
-        textSize: 25,
+        textSize: 23,
         textFont: null, //same as CanvasRenderingContext2D.font, override textName, textWeight and textStyle
         textFill: '#34495e',
         textOpacity: 1,
         textHaloFill: '#fff',
         textHaloRadius: 5,
-        textWrapWidth: null,
         textWrapCharacter: '\n',
         textLineSpacing: 0,
 
@@ -61,8 +61,9 @@ async function initPolygon() {
     }).addTo(warningLayer.value)
   })
 }
+const marker = ref(null)
 async function getRoutePlayData() {
-  const marker = new maptalks.Marker([125.4, 35.2], {
+  marker.value = new maptalks.Marker([125.4, 35.2], {
     symbol: {
       markerType: 'triangle',
       markerFill: 'red',
@@ -78,17 +79,120 @@ async function getRoutePlayData() {
       markerOpacity: 1
     }
   }).addTo(warningLayer.value)
-  marker.on('click', (e) => {
-    getRoutePlay([e.coordinate.x, e.coordinate.y])
-    console.log(playback.value)
+  marker.value.on('click', async (e) => {
+    const res = await request.get('/MapAlarmdata')
+
+    marker.value.setInfoWindow({
+      content: `
+  <div class="content">
+    <div class="content-item">
+      <span>船主：</span>
+      <span>${res.data.name}</span>
+    </div>
+    <div class="content-item">
+      <span>手机号码：</span>
+      <span>${res.data.phone}</span>
+    </div>
+    <div class="content-item">
+      <span>时间：</span>
+      <span>2024-7-30 18:30:00</span>
+    </div>
+    <div class="content-item">
+      <span>坐标：</span>
+      <span>经度：${e.coordinate.x.toFixed(5)}</span>
+      <span>纬度：${e.coordinate.y.toFixed(5)}</span>
+    </div>
+    <div class="content-item">
+      <span>航向：</span>
+      <span>${res.data.degree}°C</span>
+    </div>
+    <div class="content-item">
+      <span>船牌号：</span>
+      <span>${res.data.shipNumber}</span>
+    </div>
+    <div class="content-item">
+      <span>终端类型：</span>
+      <span>${res.data.cmd}</span>
+    </div>
+    <div class="content-item close" onclick="handleCloseVio('close')">
+    关闭
+    </div>
+    <div class="content-item close" onclick="handleCloseVio('back',${e.coordinate.x},${e.coordinate.y})">
+    轨迹回放
+    </div>
+  </div>
+  `,
+      title: '坐标',
+      autoOpenOn: true,
+      custom: true
+    })
+    marker.value.openInfoWindow(e.coordinate)
   })
 }
-function getRoutePlay(coor) {
-  playback.value = new TrackPlayBack(map.value, coor)
+
+window.handleCloseVio = (type, coorX, coorY) => {
+  switch (type) {
+    case 'close':
+      routePlay.value.removeLayer()
+      marker.value.closeInfoWindow()
+      break
+    case 'back':
+      routePlayFn(coorX, coorY)
+      break
+
+    default:
+      break
+  }
+}
+const isShowControl = ref(false)
+const playTime = ref({})
+const slideVal = ref(0)
+const selectOpt = [
+  {
+    label: '原速',
+    value: 1
+  },
+  {
+    label: '20倍',
+    value: 20
+  },
+  {
+    label: '50倍',
+    value: 50
+  }
+]
+const selectVal = ref(1)
+async function routePlayFn(x, y) {
+  playTime.value = await routePlay.value.getRoutedata([x, y])
+  isShowControl.value = true
+  routePlay.value.player.on('playstart playing playend', (e) => {
+    slideVal.value = e.target.time
+  })
+  marker.value.closeInfoWindow()
+}
+function startPlay() {
+  routePlay.value.startPlay()
+}
+function playPause() {
+  routePlay.value.pause()
+}
+function playReplay() {
+  routePlay.value.replay()
+}
+function handleSelectChange(val) {
+  routePlay.value.setSpeed(val)
+}
+function changeTime(val) {
+  routePlay.value.setTime(val)
+}
+function handleClose() {
+  routePlay.value.removeLayer()
+  isShowControl.value = false
 }
 onMounted(() => {
   getWarningMap()
   initPolygon()
+  routePlay.value = new RoutePlay(map.value)
   getRoutePlayData()
 })
 onUnmounted(() => {
@@ -96,17 +200,75 @@ onUnmounted(() => {
   if (map.value.getLayer('warningLayer')) {
     map.value.removeLayer('warningLayer')
   }
+  routePlay.value.removeLayer()
 })
 </script>
 
 <template>
-  <div class="warning-wrapper">
-    <div class="warning-content">111</div>
+  <div class="warning-wrapper" v-if="isShowControl">
+    <div class="warning-header">
+      <div class="warning-title">轨迹回放</div>
+      <div class="warning-close" style="cursor: pointer" @click="handleClose">
+        <el-icon><Close /></el-icon>
+      </div>
+    </div>
+    <div class="slide-bar">
+      <div class="slide-time">{{ playTime.startTime }}</div>
+      <el-slider
+        v-model="slideVal"
+        :max="playTime.maxTime"
+        :min="playTime.minTime"
+        @input="changeTime"
+      />
+      <div class="slide-time">{{ playTime.endTime }}</div>
+    </div>
+    <div class="speed-select">
+      倍速选择：
+      <el-select
+        v-model="selectVal"
+        placeholder="请选择"
+        style="width: 180px"
+        @change="handleSelectChange"
+      >
+        <el-option
+          v-for="item in selectOpt"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </div>
+
+    <div class="warning-content">
+      <el-button type="primary" @click="startPlay">开始</el-button>
+      <el-button type="primary" @click="playPause">暂停</el-button>
+      <el-button type="primary" @click="startPlay">继续</el-button>
+      <el-button type="primary" @click="playReplay">重播</el-button>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .warning-wrapper {
   pointer-events: all;
+  position: absolute;
+  right: 5%;
+  top: 20px;
+  background-color: white;
+  width: 400px;
+  .warning-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    margin-bottom: 30px;
+  }
+  .warning-content {
+    margin-top: 20px;
+  }
+  .slide-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+  }
 }
 </style>

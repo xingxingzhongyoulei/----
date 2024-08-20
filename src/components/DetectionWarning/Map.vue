@@ -5,6 +5,8 @@ import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { request } from '@/utils/axios'
 import { getRouterPlay } from '@/utils/rouyerPlay'
 import MapToolCoorZoom from '@/components/common/Map-tool-coor-Zoom.vue'
+import mapToolAll from '../common/map-tool-all.vue'
+import mapBaseSwitch from '../common/map-base-switch.vue'
 const map = ref(null)
 
 const props = defineProps({
@@ -151,7 +153,6 @@ function initMultiPointGeoJson(coor, rotate) {
     <div class="content-item close" onclick="handleClose('关闭')">
     关闭
     </div>
-
   </div>
   `,
       autoOpenOn: true,
@@ -178,6 +179,10 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
     default:
       break
   }
+}
+
+function handleToolClick(val) {
+  console.log(val)
 }
 
 onMounted(() => {
@@ -227,6 +232,8 @@ onUnmounted(() => {
     :zoom="mapZoom"
     :left="isCollapse ? 80 : 215"
   ></MapToolCoorZoom>
+  <mapToolAll @handleToolClick="handleToolClick"></mapToolAll>
+  <mapBaseSwitch></mapBaseSwitch>
 </template>
 
 <style lang="scss" scoped>

@@ -125,15 +125,21 @@ function handleReset() {
   speed.value = []
   trackingDuration.value = []
   targetSize.value = []
+  targetFilterVal.reseizeData()
 }
 // 实例化目标筛选
 function initTargetFilter() {
   targetFilterVal = new targetFilter(map.value)
 }
+const isShowAll = ref(false)
 // 清空坐标
 function handleClear() {
-  targetFilterVal.clearMarker()
+  isShowAll.value = !isShowAll.value
+  if (isShowAll.value) {
+    targetFilterVal.clearMarker()
+  }
 }
+
 onMounted(() => {
   getFilterMap()
   initTargetFilter()

@@ -328,7 +328,10 @@ mock(/getTargetFilter/, 'get', {
 mock(/routeBackMarker/, 'get', {
   'data|20': [
     {
-      coordinate: ['@float(125.4000, 126.0000, 4, 4)', '@float(34.0000, 36.0000, 4, 4)']
+      coordinate: ['@float(125.4000, 126.0000, 4, 4)', '@float(34.0000, 36.0000, 4, 4)'],
+      gpsTime: function () {
+        return Randoms.datetime('yyyy-MM-dd HH:mm:ss', '2024-07-05 04:06:21', '10m')
+      }
     }
   ]
 })

@@ -142,40 +142,15 @@ export default class targetFilter {
 
     this.addToMarker(dataArr)
   }
-  //   类型筛选
-  // typeFilter(val) {
-  //   let data = this.filterData.filter((item) => {
-  //     return val.includes(item.type)
-  //   })
-  //   this.addToMarker(data)
-  // }
-  //   航速筛选
-  // speedFilter(val) {
-  //   let data = this.filterData.filter((item) => {
-  //     return val.includes(parseInt(item.speed))
-  //   })
-  //   this.addToMarker(data)
-  // }
-  //   跟踪时长筛选
-  // durFilter(val) {
-  //   console.log(val)
-  //   let data = null
-  //   if (val.length == 1 && val[0] == 3) {
-  //     data = this.filterData.filter((item) => {
-  //       return item.dur <= val[0]
-  //     })
-  //   } else if (val.length == 1) {
-  //     data = this.filterData.filter((item) => {
-  //       return item.dur <= val[0] && item.dur >= val[0] / 2
-  //     })
-  //   } else {
-  //     data = this.filterData.filter((item) => {
-  //       return item.dur >= val[0] && item.dur <= val[val.length - 1]
-  //     })
-  //   }
+  reseizeData() {
+    this.clearMarker()
+    this.typeArr = []
+    this.sizeArr = []
+    this.durArr = []
+    this.speedArr = []
+    this.filterArrData()
+  }
 
-  //   this.addToMarker(data)
-  // }
   //   目标大小筛选
   sizeFilter(val) {
     console.log(val)
