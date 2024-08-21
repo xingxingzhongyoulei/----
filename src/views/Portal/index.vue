@@ -46,6 +46,7 @@ function handleClick(obj) {
 
 <template>
   <div class="portal-wrapper">
+    <div class="title-wrapper">江苏盐城智慧渔港</div>
     <div class="tabs-wrapper">
       <portalTabs :tabsItem="tabsItem" @handleClick="handleClick"></portalTabs>
     </div>
@@ -61,8 +62,37 @@ function handleClick(obj) {
   background-image: url('@/assets/img/common/icon-login-bg.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  .title-wrapper {
+    width: 775px;
+    height: 75px;
+    position: absolute;
+    top: 70px;
+    font-size: 60px;
+    letter-spacing: 15px;
+    color: white; 
+    text-shadow: 5px 5px 5px #116bfa;
+    font-style: oblique;
+    animation: colorFont 1s linear infinite alternate;
+  }
 }
 .tabs-wrapper {
-  width: 500px;
+  width: 800px;
+}
+@keyframes colorFont {
+  0% {
+    text-shadow: 5px 5px 5px #caced4;
+  }
+  30% {
+    text-shadow: 0px 0px 0 40px #e5ebf5;
+  }
+  50% {
+    text-shadow: 0px 0px 0 50px #9ebcec;
+  }
+  75% {
+    text-shadow: 10px 0px 0 50px #137cf5;
+  }
+  100% {
+    text-shadow: 0px 10px 0 8px #e5ebf5;
+  }
 }
 </style>

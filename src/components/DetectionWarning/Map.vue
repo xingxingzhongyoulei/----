@@ -7,6 +7,7 @@ import { getRouterPlay } from '@/utils/rouyerPlay'
 import MapToolCoorZoom from '@/components/common/Map-tool-coor-Zoom.vue'
 import mapToolAll from '../common/map-tool-all.vue'
 import mapBaseSwitch from '../common/map-base-switch.vue'
+import { switchBase } from '../common/switchBase'
 const map = ref(null)
 
 const props = defineProps({
@@ -47,12 +48,12 @@ function initMap() {
     centerCross: true,
     doubleClickZoom: false,
     spatialReference: {
-      projection: 'baidu'
+      projection: 'EPSG:3857'
     },
     baseLayer: new maptalks.TileLayer('base', {
       urlTemplate:
-        'https://gss{s}.bdstatic.com/8bo_dTSlRsgBo1vgoIiO_jowehsv/tile/?qt=tile&x={x}&y={y}&z={z}&styles=pl&scaler=1&udt=20170927',
-      subdomains: [0, 1, 2, 3]
+        'https://inner.qdlimap.cn:19443/gisAssistant/wmts/grid_tile/local/seaMap/01_1-18/{z}/{y}/{x}',
+      subdomains: ['a', 'b', 'c']
     })
   })
 }
@@ -183,6 +184,38 @@ window.handleClose = (e, params = '', coordinateX = '', coordinateY = '') => {
 
 function handleToolClick(val) {
   console.log(val)
+  switch (val) {
+    case 'zoom-in':
+      map.value.setZoom(map.value.getZoom() + 1)
+      break
+    case 'zoom-out':
+      map.value.setZoom(map.value.getZoom() - 1)
+      break
+
+    default:
+      break
+  }
+}
+// 切换地图底层
+function handleMapBaseSwitch(val, name, index) {
+  const baseLayerOpt = switchBase[index]
+  // 删除底图
+  if (map.value.getBaseLayer()) {
+    map.value.removeBaseLayer(map.value.getBaseLayer())
+  }
+  // 创建底图
+  const baselayer = new maptalks.TileLayer(baseLayerOpt.name, {
+    // spatialReference: baseLayerOpt.spatialReference.projection || {},
+    urlTemplate: baseLayerOpt.url,
+    subdomains: baseLayerOpt.subdomains
+  })
+  // map.value.setSpatialReference(baseLayerOpt.spatialReference.projection || {})
+  map.value.setBaseLayer(baselayer)
+
+  // 设置缩放最大值
+  if (baseLayerOpt.max) {
+    map.value.setMaxZoom(baseLayerOpt.max)
+  }
 }
 
 onMounted(() => {
@@ -233,7 +266,7 @@ onUnmounted(() => {
     :left="isCollapse ? 80 : 215"
   ></MapToolCoorZoom>
   <mapToolAll @handleToolClick="handleToolClick"></mapToolAll>
-  <mapBaseSwitch></mapBaseSwitch>
+  <mapBaseSwitch @handle="handleMapBaseSwitch"></mapBaseSwitch>
 </template>
 
 <style lang="scss" scoped>

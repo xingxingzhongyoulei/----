@@ -1,12 +1,11 @@
 <script setup>
 import 'maptalks/dist/maptalks.css'
 import * as maptalks from 'maptalks'
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { request } from '@/utils/axios'
 import RoutePlay from '@/components/common/routePlay'
 const map = ref(null)
 const warningLayer = ref(null)
-const playback = ref(null)
 const routePlay = ref(null)
 function getWarningMap() {
   map.value = window.$warningMap
@@ -42,7 +41,7 @@ async function initPolygon() {
         textName: '{name}', //value from name in geometry's properties
         textWeight: 'normal', //'bold', 'bolder'
         textStyle: 'normal', //'italic', 'oblique'
-        textSize: 23,
+        textSize: 15,
         textFont: null, //same as CanvasRenderingContext2D.font, override textName, textWeight and textStyle
         textFill: '#34495e',
         textOpacity: 1,
@@ -50,10 +49,8 @@ async function initPolygon() {
         textHaloRadius: 5,
         textWrapCharacter: '\n',
         textLineSpacing: 0,
-
         textDx: 0,
         textDy: 0,
-
         textHorizontalAlignment: 'middle', //left | middle | right | auto
         textVerticalAlignment: 'middle', // top | middle | bottom | auto
         textAlign: 'center' //left | right | center | auto
@@ -63,7 +60,7 @@ async function initPolygon() {
 }
 const marker = ref(null)
 async function getRoutePlayData() {
-  marker.value = new maptalks.Marker([125.4, 35.2], {
+  marker.value = new maptalks.Marker([124.4, 34.2], {
     symbol: {
       markerType: 'triangle',
       markerFill: 'red',
@@ -72,10 +69,10 @@ async function getRoutePlayData() {
       markerLineWidth: 3,
       markerLineOpacity: 1,
       markerLineDasharray: [],
-      markerWidth: 20,
-      markerHeight: 30,
-      markerDx: 0,
-      markerDy: 0,
+      markerWidth: 10,
+      markerHeight: 20,
+      markerDx: 10,
+      markerDy: 10,
       markerOpacity: 1
     }
   }).addTo(warningLayer.value)
@@ -208,7 +205,7 @@ onUnmounted(() => {
   <div class="warning-wrapper" v-if="isShowControl">
     <div class="warning-header">
       <div class="warning-title">轨迹回放</div>
-      <div class="warning-close" style="cursor: pointer" @click="handleClose">
+      <div class="warning-close" style="cursor: pointer;color: white;" @click="handleClose">
         <el-icon><Close /></el-icon>
       </div>
     </div>
@@ -219,6 +216,7 @@ onUnmounted(() => {
         :max="playTime.maxTime"
         :min="playTime.minTime"
         @input="changeTime"
+        style="width: 200px"
       />
       <div class="slide-time">{{ playTime.endTime }}</div>
     </div>
@@ -255,20 +253,33 @@ onUnmounted(() => {
   right: 5%;
   top: 20px;
   background-color: white;
-  width: 400px;
+  width: 450px;
+  padding-bottom: 20px;
   .warning-header {
     display: flex;
     justify-content: space-between;
     padding: 0 15px;
     margin-bottom: 30px;
+    background-color: #0052d9;
+    height: 30px;
+    line-height: 30px;
+    .warning-title {
+      color: white;
+      font-weight: 900;
+    }
   }
   .warning-content {
     margin-top: 20px;
   }
   .slide-bar {
     display: flex;
-    justify-content: space-between;
-    width: 400px;
+    width: 100%;
+    justify-content: space-evenly;
+    .slide-time {
+      min-width: 100px;
+      padding: 10px;
+      font-size: 15px;
+    }
   }
 }
 </style>

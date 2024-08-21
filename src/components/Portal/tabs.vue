@@ -53,20 +53,43 @@ function handleClick(obj) {
 .tabs-wrapper {
   width: 100%;
   overflow: hidden;
-  background-color: rgba($color: #259ddd, $alpha: 0.5);
-  border-radius: 30px;
+  // background-color: rgba($color: #259ddd, $alpha: 0.5);
+  // border-radius: 30px;
 }
 .tab-item {
+  position: relative;
   display: inline-block;
   margin: 20px;
-  width: 120px;
-  height: 120px;
-  color: #fff;
+  margin-bottom: 5px;
+  width: 140px;
+  height: 140px;
+  font-size: large;
   cursor: pointer;
   text-align: center;
-  line-height: 120px;
+  line-height: 140px;
   border-radius: 50%;
-  background: linear-gradient(to right, rgb(116, 199, 241), rgb(6, 167, 242));
+  font-family: 'Segoe UI';
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: 800;
+  animation: colorFont 2s linear infinite alternate;
+
+  // background: linear-gradient(to right, rgb(116, 199, 241), rgb(6, 167, 242));
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url('@/assets/img/trawler/circle-blue.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    animation:
+      rotate 6s linear infinite,
+      backImg 2s linear infinite alternate;
+  }
 }
 .tabs-bottom {
   cursor: pointer;
@@ -74,6 +97,8 @@ function handleClick(obj) {
   text-align: center;
   color: rgb(13, 145, 246);
   font-size: large;
+  font-weight: 800;
+  animation: colorFont 2s linear infinite alternate;
 }
 .total-icon {
   display: inline-block;
@@ -85,19 +110,59 @@ function handleClick(obj) {
 }
 .tab-item-title {
   display: block;
-  width: 100px;
+  width: 150px;
   margin: auto;
+  font-size: 20px;
+  color: white;
+  font-weight: 800;
   border-bottom: 5px solid rgb(6, 165, 239);
 }
 :deep(.el-tabs__item) {
-  min-width: 96px;
-  min-height: 30px;
-  background-image: url('@/assets/img/common/accident/icon-over-title.png');
+  min-width: 150px;
+  min-height: 50px;
+  color: white;
+  font-size: 20px;
+  background-image: url('@/assets/img/common/button-background.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   border: none;
+  overflow: visible;
+
   &.is-active {
+    position: relative;
     border: none;
+    color: rgb(13, 149, 240);
+    background-image: url('@/assets/img/common/icon-nav-active.png');
+    overflow: visible;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      border-radius: 50%;
+      background-color: #4ca5f8;
+      left: 0;
+      top: 0;
+      overflow: visible;
+      transform: translate(-50%, -50%);
+      animation: positionTrans 2s infinite;
+    }
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      border-radius: 50%;
+      background-color: #4ca5f8;
+      left: 100%;
+      top: 100%;
+      overflow: visible;
+      transform: translate(-50%, -50%);
+      animation: positionTrans2 2s infinite;
+    }
   }
 }
 :deep(.el-tabs--card .el-tabs__header .el-tabs__nav) {
@@ -105,5 +170,93 @@ function handleClick(obj) {
 }
 :deep(.el-tabs--card > .el-tabs__header) {
   border: none;
+}
+
+:deep(.el-tabs--card > .el-tabs__header .el-tabs__item) {
+  border: 0;
+}
+:deep(.el-tabs__nav) {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  overflow: visible;
+}
+:deep(.el-tabs__header) {
+  min-height: 60px;
+}
+:deep(.el-tabs__nav-scroll) {
+  overflow: visible;
+}
+:deep(.el-tabs__nav-wrap) {
+  overflow: visible;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes backImg {
+  from {
+    background-image: url('@/assets/img/trawler/circle-blue.png');
+  }
+  to {
+    background-image: url('@/assets/img/trawler/circle-yellow.png');
+  }
+}
+@keyframes colorFont {
+  from {
+    color: #4ca5f8;
+  }
+  to {
+    color: #fadb74;
+  }
+}
+@keyframes positionTrans {
+  0% {
+    left: 0;
+    top: 0;
+  }
+  25% {
+    top: 0;
+    left: 100%;
+  }
+  50% {
+    top: 100%;
+    left: 100%;
+  }
+  75% {
+    top: 100%;
+    left: 0;
+  }
+  100% {
+    top: 0;
+    left: 0;
+  }
+}
+@keyframes positionTrans2 {
+  0% {
+    left: 100%;
+    top: 100%;
+  }
+  25% {
+    top: 100%;
+    left: 0;
+  }
+  50% {
+    top: 0;
+    left: 0;
+  }
+  75% {
+    top: 0;
+    left: 100%;
+  }
+  100% {
+    top: 100%;
+    left: 100%;
+  }
 }
 </style>

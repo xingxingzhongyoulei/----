@@ -94,3 +94,78 @@ html ::-webkit-scrollbar-track {
 :deep(.el-textarea__inner) {
     color: white;
 }
+
+
+
+
+/* 思源黑体-常规 */
+@font-face {
+    font-family: 'SHSCNR';
+    src: url('../font/SourceHanSansCN-Regular.otf');
+}
+
+/* 思源黑体-标准 */
+@font-face {
+    font-family: 'SHSCNN';
+    src: url('../font/SourceHanSansCN-Normal.otf');
+}
+
+/* 思源黑体-中等 */
+@font-face {
+    font-family: 'SHSCNM';
+    src: url('../font/SourceHanSansCN-Medium.otf');
+}
+
+/* 演示斜黑体 */
+@font-face {
+    font-family: 'SKHR';
+    src: url('../font/SourceKeynoteartHansRegular.otf');
+}
+
+/* 优设标体-标准 */
+@font-face {
+    font-family: 'YSHTR';
+    src: url('../font/YouSheRegular.TTF');
+}
+
+/* DIN-B */
+@font-face {
+    font-family: 'DINB';
+    src: url('../font/DINPro-Bold.otf');
+}
+
+/* DIN-R */
+@font-face {
+    font-family: 'DINR';
+    src: url('..font/DIN-Regular.otf');
+}
+
+/* 庞门正道 */
+@font-face {
+    font-family: 'PMZDR';
+    src: url('../font/PangMenZhengDaoRegular.TTF');
+}
+
+/* 欣意冠黑体 */
+@font-face {
+    font-family: 'XYGHT';
+    src: url('../font/FontquanXinYiGuanHeiTi-Regular.ttf');
+}
+
+/* 斗图追光体 */
+@font-face {
+    font-family: 'DOUYUF';
+    src: url('../font/DOUYU-Font.otf');
+}
+
+/* 一品创享体 */
+@font-face {
+    font-family: 'YPCX';
+    src: url('../font/YPchuangxiang-GB.ttf');
+}
+
+/* 阿里汉仪智能黑体 */
+@font-face {
+    font-family: 'HYAIHT';
+    src: url('../font/HanYiZhiNengHeiTi.ttf');
+}

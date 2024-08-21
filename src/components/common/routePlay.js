@@ -73,33 +73,31 @@ export default class RoutePlay {
       symbol: {
         lineWidth: 2, //线串的宽度
         lineOpacity: 1, //线串的透明度
-        lineColor: '#26FA08', //线串的颜色
+        lineColor: 'yellow', //线串的颜色
         lineDasharray: [10, 10],
         lineJoin: 'miter-revert',
         markerVerticalAlignment: 'middle',
-        markerPlacement: 'vertex'
+        markerPlacement: 'line',
+        markerType: 'ellipse',
+        markerFill: 'yellow',
+        markerLineColor: 'yellow'
       }
     }).addTo(this.routePlayLayer)
     // 点
     let point = new maptalks.Marker(lineResult[0], {
       symbol: {
         markerType: 'ellipse',
-        markerFill: 'rgb(185,196,50)',
+        markerFill: 'red',
         markerFillOpacity: 1,
         markerLineColor: '#34495e',
         markerLineWidth: 3,
         markerLineOpacity: 1,
         markerLineDasharray: [],
-        markerWidth: 18,
-        markerHeight: 18,
-        markerDx: 0,
-        markerDy: 0,
-        markerOpacity: 1
+        markerWidth: 10,
+        markerHeight: 10
       }
     }).addTo(this.routePlayLayer)
     this.player.on('playstart playing playend', (e) => {
-      // console.log(e.coordinate)
-
       const { coordinate } = e
       point.setCoordinates([coordinate[0], coordinate[1]])
     })
