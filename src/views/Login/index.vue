@@ -113,16 +113,14 @@ function successHandle() {
     padding: 80px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    
     .title-form {
       position: relative;
-      font-style: oblique;
-      font-family: 'PMZDR';
-      // color: rgb(0, 187, 255);
       margin-bottom: 80px;
       font-size: 30px;
       letter-spacing: 15px;
       &::before {
-        content: '----welcome to login----';
+        content: '———welcome to login———';
         position: absolute;
         display: inline-block;
         width: 100%;
@@ -138,7 +136,7 @@ function successHandle() {
       background-color: #e8f0fe !important;
       border-radius: 5px;
       height: 40px;
-      box-shadow: 1px 1px 0 #d0def7;
+      box-shadow: 0 0 0 1px #d0def7;
       padding-left: 10px;
     }
     :deep(.el-input__wrapper) {
