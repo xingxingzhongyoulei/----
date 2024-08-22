@@ -45,6 +45,13 @@ function handleClick(obj) {
 </script>
 
 <template>
+  <video
+    src="@/assets/video/icon-data-center-background.mp4"
+    class="background"
+    autoplay
+    loop
+    muted
+  ></video>
   <div class="portal-wrapper">
     <div class="title-wrapper">江苏盐城智慧渔港</div>
     <div class="tabs-wrapper">
@@ -55,13 +62,12 @@ function handleClick(obj) {
 
 <style lang="scss" scoped>
 .portal-wrapper {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('@/assets/img/common/icon-login-bg.png');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+
   .title-wrapper {
     width: 775px;
     height: 75px;
@@ -69,7 +75,7 @@ function handleClick(obj) {
     top: 70px;
     font-size: 60px;
     letter-spacing: 15px;
-    color: white; 
+    color: white;
     text-shadow: 5px 5px 5px #116bfa;
     font-style: oblique;
     animation: colorFont 1s linear infinite alternate;
@@ -94,5 +100,14 @@ function handleClick(obj) {
   100% {
     text-shadow: 0px 10px 0 8px #e5ebf5;
   }
+}
+.background {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  object-fit: fill;
+  top: 0;
+  width: 100%;
+  z-index: 0;
 }
 </style>

@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import slideVerify from '@/components/Login/slideVerify.vue'
 import { showMessage } from '@/utils/Elements'
 import { useRouter } from 'vue-router'
-
+import { Stamp, Lock } from '@element-plus/icons-vue'
 const labelPosition = ref('left')
 const formLabelAlign = ref({
   username: '',
@@ -45,17 +45,20 @@ function successHandle() {
       </div>
       <div class="form-wrapper">
         <div class="title-form">欢迎登录</div>
-        <el-form
-          class="form"
-          :label-position="labelPosition"
-          label-width="auto"
-          :model="formLabelAlign"
-        >
-          <el-form-item label="用户名" :label-position="itemLabelPosition">
-            <el-input v-model="formLabelAlign.username" class="input" />
+        <el-form class="form" label-width="auto" :model="formLabelAlign">
+          <el-form-item>
+            <el-input v-model="formLabelAlign.username" class="input">
+              <template #prefix>
+                <el-icon class="el-input__icon" :size="22"><Stamp /></el-icon>
+              </template>
+            </el-input>
           </el-form-item>
-          <el-form-item label="密码" :label-position="itemLabelPosition">
-            <el-input v-model="formLabelAlign.password" class="input" />
+          <el-form-item>
+            <el-input v-model="formLabelAlign.password" class="input">
+              <template #prefix>
+                <el-icon class="el-input__icon" :size="22"><Lock /></el-icon>
+              </template>
+            </el-input>
           </el-form-item>
         </el-form>
         <el-button @click="verifyHandle" class="middleBtn" type="primary">登录</el-button>
@@ -113,12 +116,13 @@ function successHandle() {
     padding: 80px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
-    
+    text-align: center;
     .title-form {
       position: relative;
       margin-bottom: 80px;
       font-size: 30px;
       letter-spacing: 15px;
+
       &::before {
         content: '———welcome to login———';
         position: absolute;
@@ -132,21 +136,13 @@ function successHandle() {
         text-align: center;
       }
     }
-    :deep(.el-input__inner) {
+
+    :deep(.el-input__wrapper) {
       background-color: #e8f0fe !important;
       border-radius: 5px;
       height: 40px;
       box-shadow: 0 0 0 1px #d0def7;
       padding-left: 10px;
-    }
-    :deep(.el-input__wrapper) {
-      background-color: none !important;
-      padding: 0;
-      box-shadow: none;
-    }
-    :deep(.el-input) {
-      border-radius: 20px;
-  
     }
 
     .input {
@@ -157,15 +153,17 @@ function successHandle() {
       height: 40px;
       background-color: #1f55ae;
       border-radius: 20px;
-   
     }
   }
 }
 
 .middleBtn {
   margin-top: 30px;
-  width: 200px;
+  width: 180px;
   font-size: 20pxpx;
+}
+:deep(.el-form-item__content) {
+  justify-content: center;
 }
 @keyframes colorFont {
   0% {
