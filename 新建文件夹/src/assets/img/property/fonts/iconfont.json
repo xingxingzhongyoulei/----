@@ -1,0 +1,58 @@
+{
+  "id": "4629692",
+  "name": "资产静态页面",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5286702",
+      "name": "缩小",
+      "font_class": "suoxiao",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "9474626",
+      "name": "放大",
+      "font_class": "fangda",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "14212751",
+      "name": "测距",
+      "font_class": "ceju",
+      "unicode": "e9f0",
+      "unicode_decimal": 59888
+    },
+    {
+      "icon_id": "28313855",
+      "name": "复位",
+      "font_class": "fuwei",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "27180519",
+      "name": "电源开关",
+      "font_class": "dianyuankaiguan",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "10480270",
+      "name": "柱状图",
+      "font_class": "zhuzhuangtu",
+      "unicode": "e929",
+      "unicode_decimal": 59689
+    },
+    {
+      "icon_id": "4969132",
+      "name": "智明－大风车",
+      "font_class": "zhimingdafengche",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    }
+  ]
+}

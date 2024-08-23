@@ -1,0 +1,171 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* overflow: hidden; */
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#app {
+    color: #2c3e50;
+    font-family: 'SHSCNR', Avenir, Helvetica, Arial, sans-serif;
+    /* height: 100%; */
+    text-align: center;
+    width: 100%;
+    /* overflow: hidden; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 默认系统字体 */
+.el-dialog,
+.el-drawer,
+form,
+table,
+input,
+textarea {
+    font-family: 'SHSCNR', Avenir, Helvetica, Arial, sans-serif;
+}
+
+/*业务版滚动条样式*/
+html ::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 5px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 5px;
+}
+
+html ::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 1px !important;
+    -webkit-box-shadow: inset 0 0 2px rgba(82, 156, 255, 1) !important;
+    background: rgba(82, 156, 255, 1) !important;
+}
+
+html ::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 2px rgba(135, 186, 255, .3) !important;
+    border-radius: 1px !important;
+    background: rgba(135, 186, 255, .3) !important;
+}
+
+:deep(.el-form-item__label) {
+    color: white;
+}
+
+:deep(.el-input__inner) {
+    background-color: #092a63;
+    color: white;
+}
+
+:deep(.el-input__wrapper) {
+    background-color: #092a63;
+    padding: 0;
+}
+
+:deep(.el-form-item__content) {
+    text-align: center;
+}
+
+:deep(.el-textarea__inner) {
+    background-color: #092a63;
+}
+
+:deep(.el-textarea__inner) {
+    color: white;
+}
+
+
+
+
+/* 思源黑体-常规 */
+@font-face {
+    font-family: 'SHSCNR';
+    src: url('../font/SourceHanSansCN-Regular.otf');
+}
+
+/* 思源黑体-标准 */
+@font-face {
+    font-family: 'SHSCNN';
+    src: url('../font/SourceHanSansCN-Normal.otf');
+}
+
+/* 思源黑体-中等 */
+@font-face {
+    font-family: 'SHSCNM';
+    src: url('../font/SourceHanSansCN-Medium.otf');
+}
+
+/* 演示斜黑体 */
+@font-face {
+    font-family: 'SKHR';
+    src: url('../font/SourceKeynoteartHansRegular.otf');
+}
+
+/* 优设标体-标准 */
+@font-face {
+    font-family: 'YSHTR';
+    src: url('../font/YouSheRegular.TTF');
+}
+
+/* DIN-B */
+@font-face {
+    font-family: 'DINB';
+    src: url('../font/DINPro-Bold.otf');
+}
+
+/* DIN-R */
+@font-face {
+    font-family: 'DINR';
+    src: url('..font/DIN-Regular.otf');
+}
+
+/* 庞门正道 */
+@font-face {
+    font-family: 'PMZDR';
+    src: url('../font/PangMenZhengDaoRegular.TTF');
+}
+
+/* 欣意冠黑体 */
+@font-face {
+    font-family: 'XYGHT';
+    src: url('../font/FontquanXinYiGuanHeiTi-Regular.ttf');
+}
+
+/* 斗图追光体 */
+@font-face {
+    font-family: 'DOUYUF';
+    src: url('../font/DOUYU-Font.otf');
+}
+
+/* 一品创享体 */
+@font-face {
+    font-family: 'YPCX';
+    src: url('../font/YPchuangxiang-GB.ttf');
+}
+
+/* 阿里汉仪智能黑体 */
+@font-face {
+    font-family: 'HYAIHT';
+    src: url('../font/HanYiZhiNengHeiTi.ttf');
+}

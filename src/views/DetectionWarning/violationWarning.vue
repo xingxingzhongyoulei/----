@@ -4,6 +4,9 @@ import * as maptalks from 'maptalks'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { request } from '@/utils/axios'
 import RoutePlay from '@/components/common/routePlay'
+import { getSymbol } from '@/components/DetectionWarning/map/symbol'
+import { getAssetsFile } from '@/utils/getAssetsFile'
+import FouceMarker from '@/components/DetectionWarning/map/fouceMarker'
 const map = ref(null)
 const warningLayer = ref(null)
 const routePlay = ref(null)
@@ -41,7 +44,7 @@ async function initPolygon() {
         textName: '{name}', //value from name in geometry's properties
         textWeight: 'normal', //'bold', 'bolder'
         textStyle: 'normal', //'italic', 'oblique'
-        textSize: 15,
+        textSize: 10,
         textFont: null, //same as CanvasRenderingContext2D.font, override textName, textWeight and textStyle
         textFill: '#34495e',
         textOpacity: 1,
@@ -59,29 +62,22 @@ async function initPolygon() {
   })
 }
 const marker = ref(null)
+const fouceMarker = ref(null)
 async function getRoutePlayData() {
   marker.value = new maptalks.Marker([124.4, 34.2], {
-    symbol: {
-      markerType: 'triangle',
-      markerFill: 'red',
-      markerFillOpacity: 1,
-      markerLineColor: '#34495e',
-      markerLineWidth: 3,
-      markerLineOpacity: 1,
-      markerLineDasharray: [],
-      markerWidth: 10,
-      markerHeight: 20,
-      markerDx: 10,
-      markerDy: 10,
-      markerOpacity: 1
-    }
+    symbol: getSymbol()
   }).addTo(warningLayer.value)
-  marker.value.on('click', async (e) => {
-    const res = await request.get('/MapAlarmdata')
 
+  marker.value.on('click', async (e) => {
+    fouceMarker.value = new FouceMarker(map.value, e.coordinate)
+
+    const res = await request.get('/MapAlarmdata')
     marker.value.setInfoWindow({
       content: `
   <div class="content">
+    <div class="content-title"><span>${res.data.shipNumber}</span>
+
+    </div>
     <div class="content-item">
       <span>船主：</span>
       <span>${res.data.name}</span>
@@ -123,6 +119,8 @@ async function getRoutePlayData() {
       autoOpenOn: true,
       custom: true
     })
+
+    map.value.animateTo({ center: [e.coordinate.x, e.coordinate.y + 0.2], zoom: 8 })
     marker.value.openInfoWindow(e.coordinate)
   })
 }
@@ -134,6 +132,7 @@ window.handleCloseVio = (type, coorX, coorY) => {
       marker.value.closeInfoWindow()
       break
     case 'back':
+      map.value.animateTo({ zoom: 7 })
       routePlayFn(coorX, coorY)
       break
 
@@ -202,10 +201,11 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <img src="/img/map/icon-focus.png" alt="" />
   <div class="warning-wrapper" v-if="isShowControl">
     <div class="warning-header">
       <div class="warning-title">轨迹回放</div>
-      <div class="warning-close" style="cursor: pointer;color: white;" @click="handleClose">
+      <div class="warning-close" style="cursor: pointer; color: white" @click="handleClose">
         <el-icon><Close /></el-icon>
       </div>
     </div>
@@ -250,6 +250,7 @@ onUnmounted(() => {
 .warning-wrapper {
   pointer-events: all;
   position: absolute;
+
   right: 5%;
   top: 20px;
   background-color: white;
